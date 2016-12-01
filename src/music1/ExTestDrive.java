@@ -23,7 +23,6 @@ public class ExTestDrive {
 			System.out.println("w");
 		}
 		System.out.println("s");
-
 	}
 
 	static void doRisry(String t)throws MyEx{
