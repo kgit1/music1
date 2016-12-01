@@ -6,7 +6,7 @@ class MyEx extends Exception {
 public class ExTestDrive {
 
 	public static void main(String[] args) {
-		// fake cmd lin argument
+		// fake cmd line argument
 		args = new String[1];
 		args[0] = "no";
 
