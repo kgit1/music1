@@ -27,7 +27,11 @@ public class MiniMusicPlayer1 {
 			// add events to the track
 			//144 - start of playing note
 			//128 end of that note
-			for (int i = 5; i < 61; i++) {
+//			for (int i = 5; i < 61; i++) {
+//				track.add(makeEvent(144, 1, i, 100, i));
+//				track.add(makeEvent(128, 1, i, 100, i+2));
+//			}
+			for (int i = 5; i < 61; i+=4) {
 				track.add(makeEvent(144, 1, i, 100, i));
 				track.add(makeEvent(128, 1, i, 100, i+2));
 			}
