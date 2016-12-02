@@ -36,7 +36,7 @@ public class MiniMiniMusicApp {
 			// 144 -(start playing the note)type of the message
 			// 1 - use channel number 1 (means instrument (0 - 127))
 			// 44 - the note (0 - 127)
-			// speed and power of keystroke(nazatiya klavishi)
+			// 100-  speed and power of keystroke(nazatiya klavishi)
 			a.setMessage(144, 1, 44, 100);
 			// before event u can change instrument like this
 			// a.setMessage(192,1,102,0) - 192 mean change instrument,
