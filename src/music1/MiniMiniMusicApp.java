@@ -34,7 +34,7 @@ public class MiniMiniMusicApp {
 			ShortMessage a = new ShortMessage();
 			// put message into instruction
 			// 144 -(start playing the note)type of the message
-			// 1 - use channel number 1 (means instrument (0 - 127))
+			// 1 - use channel number 1 (means instrument (0 - 15))
 			// 44 - the note (0 - 127)
 			// 100-  speed and power of keystroke(nazatiya klavishi)
 			a.setMessage(144, 1, 44, 100);
