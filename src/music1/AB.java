@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-//draw panel with button which changing text from A to B and vice versa 
+//draw window with button which changing text from A to B and vice versa 
 public class AB {
 	//window
 	JFrame frame;
