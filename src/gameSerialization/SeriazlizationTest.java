@@ -20,7 +20,7 @@ public class SeriazlizationTest {
 			// and to create if not exists
 			FileOutputStream fos = new FileOutputStream("MyGame.ser");
 
-			// create OutPutStram object - knows how towrite down object
+			// create OutPutStram object - knows how to write down object
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
 			// serialize and write objects to file

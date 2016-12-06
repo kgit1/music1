@@ -1,12 +1,15 @@
 package gameSerialization;
 
+import java.beans.Transient;
 import java.io.Serializable;
 
 public class Character implements Serializable {
 
 	private String name;
 	private String strength;
-	private int age;
+	
+	//transient mean - variables value wouldn't be serializebled and saved
+	transient private int age;
 	public Character(String name, String strength, int age) {
 		super();
 		this.name = name;
