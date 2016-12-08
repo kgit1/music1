@@ -37,6 +37,9 @@ public class WriteFile {
 			}
 			// write string to buffer
 			bw.write("----------------------------\n");
+			// write all strings from buffer to file and empty the buffer
+			// without closing if needed
+			// bw.flush();
 			// write all string from buffer to file and close bufferedWriter
 			bw.close();
 		} catch (IOException e) {
