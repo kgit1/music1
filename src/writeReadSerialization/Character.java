@@ -1,4 +1,4 @@
-package gameSerialization;
+package writeReadSerialization;
 
 import java.beans.Transient;
 import java.io.Serializable;
