@@ -8,13 +8,16 @@ import java.io.IOException;
 public class WriteFile {
 
 	public static void main(String[] args) {
+		// instantiate our class
 		WriteFile wf = new WriteFile();
 		String s1 = "First string";
 		String s2 = "Second string";
-		String s3 = "Thierd string";
+		String s3 = "Third string";
 		// file - represents file, but haven't file content inside - just path
 		File file = new File("Strings");
 		wf.writeFile(file, s1, s2, s3);
+		wf.writeRewriteFile(file, true, s1, s2, s3);
+		wf.writeRewriteFile(file, true, s1, s2, s3);
 
 	}
 
