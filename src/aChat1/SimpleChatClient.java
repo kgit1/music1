@@ -36,56 +36,33 @@ public class SimpleChatClient {
 		frame.setSize(400, 500);
 		frame.setVisible(true);
 	}
-	
-	private void setUpNetworking(){
-		try{
+
+	private void setUpNetworking() {
+		try {
 			socket = new Socket("127.0.0.1", 5000);
 			writer = new PrintWriter(socket.getOutputStream());
 			System.out.println("networking established");
-			
-		}catch(IOException ex){
+
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
-	
-	public class SendButtonListener implements ActionListener{
+
+	public class SendButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			try{
+			try {
 				writer.println(outgoing.getText());
 				writer.flush();
-			}catch(Exception ex){
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 			outgoing.setText("");
 			outgoing.requestFocus();
-			
+
 		}
-		
+
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
