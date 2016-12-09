@@ -25,7 +25,7 @@ public class DailyAdviceClient {
 			BufferedReader br = new BufferedReader(isr);
 			
 			String advice = br.readLine();
-			System.out.println("Today you mast: "+ advice);
+			System.out.println("Today you must: "+ advice);
 			
 			br.close();
 
