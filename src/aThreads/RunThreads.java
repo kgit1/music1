@@ -1,4 +1,5 @@
 package aThreads;
+//app shows that jvm every time will give different time for every thread to work
 
 //thread to start needs runnable object with method run which tell to tread 
 //what to do
