@@ -35,7 +35,7 @@ public class VerySimpleChatServer {
 			String message;
 			try {
 				while ((message = reader.readLine()) != null) {
-					System.out.println("read " + message);
+					System.out.println("read1 " + message);
 					tellEveryOne(message);
 				}
 			} catch (Exception ex) {
