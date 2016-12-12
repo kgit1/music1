@@ -108,7 +108,6 @@ public class SimpleChatClientCorrect {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-
 		}
 
 	}

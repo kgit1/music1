@@ -20,7 +20,7 @@ public class MiniMusicPlayer2 implements ControllerEventListener {
 
 	public void go() {
 		try {
-			// get and open sequencer - sintezator
+			//instantiate sequencer(player, synthesizer)
 			Sequencer sequencer = MidiSystem.getSequencer();
 			// open sequencer
 			sequencer.open();
@@ -33,7 +33,7 @@ public class MiniMusicPlayer2 implements ControllerEventListener {
 			// register sequencers events
 			sequencer.addControllerEventListener(this, eventsIWant);
 
-			// get new track from sequence
+			// create new track from sequence
 			Track track = seq.createTrack();
 
 			// add events to the track
@@ -76,13 +76,13 @@ public class MiniMusicPlayer2 implements ControllerEventListener {
 			// create note
 			// beginning of the note
 			// message tells what to do
-			// midievent tell when to do
+			// midievent tells when to do
 
 			// create message
 			ShortMessage a = new ShortMessage();
-			// put message into instruction
-			// cmd - type of the message
-			// chan - use channel number (means instrument (0 - 127))
+			// put instruction into the message
+			// cmd - type of the message(144 - start playing note, 128 - stop)
+			// chan - channel number (means instrument (0 - 15))
 			// one - the note (0 - 127)
 			// two - speed and power of keystroke(nazatiya klavishi)
 			a.setMessage(cmd, chan, one, two);
@@ -96,7 +96,7 @@ public class MiniMusicPlayer2 implements ControllerEventListener {
 
 	}
 
-	//method to do something when event catched
+	// method to do something when event catched
 	@Override
 	public void controlChange(ShortMessage event) {
 		System.out.println("La");

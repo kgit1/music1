@@ -60,7 +60,7 @@ public class MiniMusicPlayer1 {
 			// message tells what to do
 			// midievent tell when to do
 
-			// create message
+			// create message and instantiate
 			ShortMessage a = new ShortMessage();
 			// put message into instruction
 			// cmd - type of the message
@@ -68,7 +68,7 @@ public class MiniMusicPlayer1 {
 			// one - the note (0 - 127)
 			// two - speed and power of keystroke(nazatiya klavishi)
 			a.setMessage(cmd, chan, one, two);
-			// create new event with message
+			// instantiate new event with message
 			event = new MidiEvent(a, tick);
 		} catch (InvalidMidiDataException e) {
 			e.printStackTrace();

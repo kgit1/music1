@@ -1,4 +1,4 @@
-package music1;
+package aBeatBox;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -225,11 +225,11 @@ public class FullBeatBox {
 					checkboxState[i] = true;
 				}
 			}
-			//save file window
-			//all work with choosing file anf navigation
-			//JFileChooser will do for you
+			// save file window
+			// all work with choosing file anf navigation
+			// JFileChooser will do for you
 			JFileChooser fileSave = new JFileChooser();
-			//send save file window to frame
+			// send save file window to frame
 			fileSave.showSaveDialog(theFrame);
 
 			try {
@@ -242,28 +242,6 @@ public class FullBeatBox {
 				ex.printStackTrace();
 			}
 		}
-
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// boolean[] checkboxState = new boolean[256];
-		//
-		// for (int i = 0; i < 256; i++) {
-		// JCheckBox check = (JCheckBox) checkboxList.get(i);
-		// if (check.isSelected()) {
-		// checkboxState[i] = true;
-		// }
-		// }
-		//
-		// try {
-		// FileOutputStream fos = new FileOutputStream(
-		// new File("Checkbox.ser"));
-		// ObjectOutputStream oos = new ObjectOutputStream(fos);
-		// oos.writeObject(checkboxState);
-		// oos.close();
-		// } catch (Exception ex) {
-		// ex.printStackTrace();
-		// }
-		// }
 	}
 
 	public class MyReadListener implements ActionListener {
@@ -271,12 +249,12 @@ public class FullBeatBox {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			boolean[] checkboxState = null;
-			
-			//open file window
-			//all work with choosing file and navigation
-			//JFileChooser will do for you
+
+			// open file window
+			// all work with choosing file and navigation
+			// JFileChooser will do for you
 			JFileChooser fileOpen = new JFileChooser();
-			//send open file window to frame
+			// send open file window to frame
 			fileOpen.showOpenDialog(theFrame);
 
 			try {
@@ -298,28 +276,6 @@ public class FullBeatBox {
 			sequencer.stop();
 			buildTrackAndStart();
 		}
-
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// boolean[] checkboxState = null;
-		// try {
-		// FileInputStream fis = new FileInputStream(new File("Checkbox.ser"));
-		// ObjectInputStream ois = new ObjectInputStream(fis);
-		// checkboxState = (boolean[]) ois.readObject();
-		// } catch (Exception ex) {
-		// ex.printStackTrace();
-		// }
-		// for(int i = 0; i<256;i++){
-		// JCheckBox check = checkboxList.get(i);
-		// if(checkboxState[i]){
-		// check.setSelected(true);
-		// }else{
-		// check.setSelected(false);
-		// }
-		// }
-		// sequencer.stop();
-		// buildTrackAndStart();
-		// }
 
 	}
 }
