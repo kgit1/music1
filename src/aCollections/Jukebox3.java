@@ -38,6 +38,7 @@ public class Jukebox3 {
 		// or
 		// for int
 		// return (o1>o2)?1:(o1<o2)?-1:0;
+		// if (a<b) return 1; if (a==b) return 0 else return -1;
 
 		// Collections.sort(songList, new Comparator<Song>() {
 		// @Override
