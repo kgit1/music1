@@ -79,6 +79,12 @@ public class Jukebox3 {
 			writer.write("Deep Chaennel/CAfro Celts/7/120\n");
 			writer.write("Passenger/BHeadmix/9/150\n");
 			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Listen/ATahiti 80/10/120");
+			writer.write("Circles/DBT/8/120\n");
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
