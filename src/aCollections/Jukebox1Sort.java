@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Jukebox1 {
+public class Jukebox1Sort {
 
 	ArrayList<String> songList = new ArrayList<>();
 
 	public static void main(String[] args) {
-		new Jukebox1().go();
+		new Jukebox1Sort().go();
 	}
 
 	public void go() {

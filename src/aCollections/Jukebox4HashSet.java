@@ -10,22 +10,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 
-public class Jukebox3 {
+public class Jukebox4HashSet {
 
 	ArrayList<Song> songList = new ArrayList<>();
 
 	public static void main(String[] args) {
-		new Jukebox3().go();
+		new Jukebox4HashSet().go();
 	}
 
 	public void go() {
 		feelFile();
 		getSongs();
+		System.out.println("========ORIGINAL LIST==============");
+
 		System.out.println(songList);
-		// Collections.sort(songList);
-		// System.out.println(songList);
-		System.out.println("======================");
+
+		Collections.sort(songList);
+		System.out.println("========SORTED BY COLLECTION SORT==============");
+		System.out.println(songList);
+
+		HashSet<Song> songSet = new HashSet<Song>();
+		songSet.addAll(songList);
+		System.out.println("=========HASH SET=============");
+		System.out.println(songSet);
 
 		// use collections to sort our list
 		// but with anonymous class for comparator
@@ -51,20 +60,20 @@ public class Jukebox3 {
 		// });
 		// System.out.println(songList);
 
-		Collections.sort(songList, new Comparator<Song>() {
-			@Override
-			public int compare(Song o1, Song o2) {
-				// return o1.getArtist().compareTo(o2.getArtist());
-				// return o1.getTitle().compareTo(o2.getTitle());
-
-				return (Integer.parseInt(o1.getRating()) > Integer
-						.parseInt(o2.getRating())) ? -1
-								: (Integer.parseInt(o1.getRating()) < Integer
-										.parseInt(o2.getRating())) ? 1 : 0;
-			}
-		});
-
-		System.out.println(songList);
+		// Collections.sort(songList, new Comparator<Song>() {
+		// @Override
+		// public int compare(Song o1, Song o2) {
+		// // return o1.getArtist().compareTo(o2.getArtist());
+		// // return o1.getTitle().compareTo(o2.getTitle());
+		//
+		// return (Integer.parseInt(o1.getRating()) > Integer
+		// .parseInt(o2.getRating())) ? -1
+		// : (Integer.parseInt(o1.getRating()) < Integer
+		// .parseInt(o2.getRating())) ? 1 : 0;
+		// }
+		// });
+		//
+		// System.out.println(songList);
 
 	}
 
@@ -78,13 +87,13 @@ public class Jukebox3 {
 			writer.write("Circles/DBT/8/120\n");
 			writer.write("Deep Chaennel/CAfro Celts/7/120\n");
 			writer.write("Passenger/BHeadmix/9/150\n");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Listen/ATahiti 80/10/120");
-			writer.write("Circles/DBT/8/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Listen/ATahiti 80/10/120\n");
+			writer.write("Circles/DBT/8/120");
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
