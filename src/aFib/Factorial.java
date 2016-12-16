@@ -8,10 +8,8 @@ public class Factorial {
 
 	public static int factorial(int arg) {
 		if (arg == 0) {
-			// System.out.println(arg);
 			return 1;
 		} else {
-			// System.out.println(arg);
 			return arg * factorial(arg - 1);
 		}
 	}

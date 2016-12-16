@@ -9,16 +9,15 @@ public class EvenOrOdd {
 
 	public static boolean isEven(int k) {
 		if (k == 0) {
-			return true; // 0 - четное число
+			return true;
 		} else {
 			return isOdd(k - 1);
 		}
 	}
 
-	// проверка на НЕчетность
 	public static boolean isOdd(int k) {
 		if (k == 0) {
-			return false; // 0 - НЕ НЕчетное число
+			return false;
 		} else {
 			return isEven(k - 1);
 		}
