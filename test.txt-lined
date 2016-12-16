@@ -1,0 +1,123 @@
+<p>WEB-INF-> put spring-mvc-crud-demo-servlet.xml abd web.xml to WEB-INF folder</p>
+<p>WEB-INF-> lib-> put javax.servlet.jsp.jstl-1.2.1.jar</p>
+<p>					javax.servlet.jsp.jstl-api-1.2.1.jar</p>
+<p>					commons-logging-1.2.jar</p>
+<p>					latest spring libs</p>
+<p>					latest hibernate libs from required					</p>
+<p>					and (c3p0 - database connection pooling)</p>
+<p>					from optional->c3p0</p>
+<p><hr>		</p>
+<p>go to spring-mvc-crud-demo-servlet.xml	and				</p>
+<p>define database dataSource/connection pool</p>
+<p>setup hibernate session factory</p>
+<p>setup hibernate transaction manager</p>
+<p>enable configuration of transactional annotations</p>
+<p><hr></p>
+<p>create package controller</p>
+<p>create class CustomerController without main</p>
+<p>@Controller</p>
+<p>@RequestMapping("/customer")</p>
+<p>public class CustomerController {</p>
+<p>	</p>
+<p>	@RequestMapping("/list")</p>
+<p>	public String listCustomers(Model theModel){		</p>
+<p>		return "list-customers";		</p>
+<p>	}</p>
+<p>}</p>
+<p><hr></p>
+<p>add to spring-mvc-crud-demo-servlet.xml </p>
+<p><mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources></p>
+<p>to map folder where images and css will be stored </p>
+<p>create folder view in WEB-INF folder</p>
+<p>create jsp file -> list-customers</p>
+<p>put inside body - List Customers - coming soon....</p>
+<p>put <img src="${pageContext.request.contextPath}/resources/images/how spring mvc.jpg"></p>
+<p>run project on server</p>
+<p>append "customer/list" to address </p>
+<p>and check if it works</p>
+<p><hr></p>
+<p>create package for DAO -DATA ACCESS OBJECT</p>
+<p>create interface CustomerDAO</p>
+<p>public interface CustomerDAO {</p>
+<p>	public List<Customer> getCustomers();</p>
+<p>}</p>
+<p>create implementation CustomerDAOImpl</p>
+<p>//add repository to help spring componentscan to find this repository</p>
+<p>//and also to handle error translation for us</p>
+<p>@Repository</p>
+<p>public class CustomerDAOImpl implements CustomerDAO {</p>
+
+<p>	// need to inject session factory</p>
+<p>	@Autowired</p>
+<p>	private SessionFactory sessionFactory;</p>
+
+<p>	@Override</p>
+<p>	@Transactional</p>
+<p>	public List<Customer> getCustomers() {</p>
+
+<p>		// get the current session</p>
+<p>		Session session = sessionFactory.getCurrentSession();</p>
+
+<p>		// create query</p>
+<p>		Query<Customer> theQuery = session.createQuery("from Customer",</p>
+<p>				Customer.class);</p>
+
+<p>		// execute query and the result</p>
+<p>		List<Customer> customers = theQuery.getResultList();</p>
+
+<p>		// return the result</p>
+<p>		return customers;</p>
+<p>	}</p>
+<p>}</p>
+<p><hr></p>
+<p>change our CustomerController to work through DAO</p>
+<p>//add controller annotation to help sring find controller</p>
+<p>@Controller</p>
+<p>//add requestMapping on class to group our links</p>
+<p>@RequestMapping("/customer")</p>
+<p>public class CustomerController {</p>
+<p>	</p>
+<p>	//autoinject dao to work with it</p>
+<p>	@Autowired</p>
+<p>	CustomerDAO customerDAO;</p>
+
+<p>	//add requestMapping to give link for our method</p>
+<p>	@RequestMapping("/list")</p>
+<p>	//add model in method to hold and translate data</p>
+<p>	public String listCustomers(Model theModel) {</p>
+
+<p>		// get customers from the dao</p>
+<p>		List<Customer> theCustomers = customerDAO.getCustomers();</p>
+
+<p>		// add customers to the model</p>
+<p>		theModel.addAttribute("customers", theCustomers);</p>
+<p>		customerDAO.getCustomers();</p>
+<p>		return "list-customers";</p>
+<p>	}</p>
+<p>}</p>
+<p><hr></p>
+<p> add jstl tags library to our jsp </p>
+<p><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   </p>
+
+<p>add table to hold and show our data from model from model in controllers method</p>
+<p>and populate table with data usinf foreach</p>
+<p><table></p>
+<p>	<tr></p>
+<p>	<th>First Name</th></p>
+<p>	<th>Last Name</th></p>
+<p>	<th>Email Name</th></p>
+<p>	</tr></p>
+<p>	</p>
+<p>	<!-- items="${customers} <- customers name from MVC model  --></p>
+<p>		<c:forEach var="tempCustomer" items="${customers}"></p>
+<p>			<tr></p>
+<p>			<!-- will call tempCustomer.getFirstName() --></p>
+<p>			<td>${tempCustomer.firstName}</td></p>
+<p>			<!-- will call tempCustomer.getLastName() --></p>
+<p>			<td>${tempCustomer.lastName}</td></p>
+<p>			<!-- will call tempCustomer.getEmail() --></p>
+<p>			<td>${tempCustomer.email}</td></p>
+<p>			</tr></p>
+<p>		</p>
+<p>		</c:forEach>		</p>
+<p>	</table></p>

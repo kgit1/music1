@@ -1,0 +1,123 @@
+WEB-INF-> put spring-mvc-crud-demo-servlet.xml abd web.xml to WEB-INF folder
+WEB-INF-> lib-> put javax.servlet.jsp.jstl-1.2.1.jar
+					javax.servlet.jsp.jstl-api-1.2.1.jar
+					commons-logging-1.2.jar
+					latest spring libs
+					latest hibernate libs from required					
+					and (c3p0 - database connection pooling)
+					from optional->c3p0
+<hr>		
+go to spring-mvc-crud-demo-servlet.xml	and				
+define database dataSource/connection pool
+setup hibernate session factory
+setup hibernate transaction manager
+enable configuration of transactional annotations
+<hr>
+create package controller
+create class CustomerController without main
+@Controller
+@RequestMapping("/customer")
+public class CustomerController {
+	
+	@RequestMapping("/list")
+	public String listCustomers(Model theModel){		
+		return "list-customers";		
+	}
+}
+<hr>
+add to spring-mvc-crud-demo-servlet.xml 
+<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+to map folder where images and css will be stored 
+create folder view in WEB-INF folder
+create jsp file -> list-customers
+put inside body - List Customers - coming soon....
+put <img src="${pageContext.request.contextPath}/resources/images/how spring mvc.jpg">
+run project on server
+append "customer/list" to address 
+and check if it works
+<hr>
+create package for DAO -DATA ACCESS OBJECT
+create interface CustomerDAO
+public interface CustomerDAO {
+	public List<Customer> getCustomers();
+}
+create implementation CustomerDAOImpl
+//add repository to help spring componentscan to find this repository
+//and also to handle error translation for us
+@Repository
+public class CustomerDAOImpl implements CustomerDAO {
+
+	// need to inject session factory
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	@Transactional
+	public List<Customer> getCustomers() {
+
+		// get the current session
+		Session session = sessionFactory.getCurrentSession();
+
+		// create query
+		Query<Customer> theQuery = session.createQuery("from Customer",
+				Customer.class);
+
+		// execute query and the result
+		List<Customer> customers = theQuery.getResultList();
+
+		// return the result
+		return customers;
+	}
+}
+<hr>
+change our CustomerController to work through DAO
+//add controller annotation to help sring find controller
+@Controller
+//add requestMapping on class to group our links
+@RequestMapping("/customer")
+public class CustomerController {
+	
+	//autoinject dao to work with it
+	@Autowired
+	CustomerDAO customerDAO;
+
+	//add requestMapping to give link for our method
+	@RequestMapping("/list")
+	//add model in method to hold and translate data
+	public String listCustomers(Model theModel) {
+
+		// get customers from the dao
+		List<Customer> theCustomers = customerDAO.getCustomers();
+
+		// add customers to the model
+		theModel.addAttribute("customers", theCustomers);
+		customerDAO.getCustomers();
+		return "list-customers";
+	}
+}
+<hr>
+ add jstl tags library to our jsp 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+
+add table to hold and show our data from model from model in controllers method
+and populate table with data usinf foreach
+<table>
+	<tr>
+	<th>First Name</th>
+	<th>Last Name</th>
+	<th>Email Name</th>
+	</tr>
+	
+	<!-- items="${customers} <- customers name from MVC model  -->
+		<c:forEach var="tempCustomer" items="${customers}">
+			<tr>
+			<!-- will call tempCustomer.getFirstName() -->
+			<td>${tempCustomer.firstName}</td>
+			<!-- will call tempCustomer.getLastName() -->
+			<td>${tempCustomer.lastName}</td>
+			<!-- will call tempCustomer.getEmail() -->
+			<td>${tempCustomer.email}</td>
+			</tr>
+		
+		</c:forEach>		
+	</table>
