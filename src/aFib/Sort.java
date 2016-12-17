@@ -10,28 +10,7 @@ public class Sort {
 		s.printAndSort(s.arrayGenerator(150, 50));
 	}
 
-	public static void sortChoose(int[] arr) {
-		for (int moveCounter = 0; moveCounter < arr.length; moveCounter++) {
-			int min = moveCounter;
-			for (int i = moveCounter + 1; i < arr.length; i++) {
-				if (arr[i] < arr[min]) {
-					min = i;
-				}
-			}
-			int tmp = arr[min];
-			for (int j = min; j > moveCounter; j--) {
-				arr[j] = arr[j - 1];
-			}
-			arr[moveCounter] = tmp;
-		}
-	}
-
-	public void printAndSort(int[] array) {
-		System.out.println("Random array       " + Arrays.toString(array));
-		sortChoose(array);
-		System.out.println("Random sorted array" + Arrays.toString(array));
-	}
-
+	// generate array with random numbers up to "randMax" with size - "size"
 	public int[] arrayGenerator(int randMax, int size) {
 		int[] array = new int[size];
 		Random rand = new Random();
@@ -39,6 +18,38 @@ public class Sort {
 			array[i] = rand.nextInt(randMax);
 		}
 		return array;
+	}
+
+	// sort array with selection algorithm
+	// 
+	public static void sortSelection(int[] array) {
+		int counter = 0;
+		for (int i = 0; i < array.length - 1; i++) {
+			// hold index of minimal number
+			int min = i;
+			for (int j = i + 1; j < array.length; j++) {
+				if (array[j] < array[min]) {
+					// if arr[j] < arr[min], assign j to mi
+					min = j;
+				}
+			}
+			// if min not equals to min - switch arr[i] with arr[min]
+			if (i != min) {
+				counter++;
+				int tmp = array[min];
+				array[min] = array[i];
+				array[i] = tmp;
+			}
+		}
+		System.out.println("Counter: " + counter);
+
+	}
+
+	// print incoming array and sorted version
+	public void printAndSort(int[] array) {
+		System.out.println("Random array       " + Arrays.toString(array));
+		sortSelection(array);
+		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
 }
