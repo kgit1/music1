@@ -22,7 +22,7 @@ public class Sort {
 
 	// sort array with selection algorithm
 	// 
-	public static void sortSelection(int[] array) {
+	public void sortSelection(int[] array) {
 		int counter = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			// hold index of minimal number

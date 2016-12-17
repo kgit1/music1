@@ -25,7 +25,7 @@ public class Fibonacci {
 		if (number == 0) {
 			return 0;
 		}
-		if (number == 1) {
+		if (number < 3) {
 			return 1;
 		}
 		int fib = fibonacci(number - 1) + fibonacci(number - 2);

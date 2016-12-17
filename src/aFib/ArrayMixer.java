@@ -3,9 +3,6 @@ package aFib;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Created by erik on 02.07.2015.
- */
 public class ArrayMixer {
 	public static int count = 0;
 	public static int countString = 0;

@@ -1,6 +1,8 @@
 
 package aFib;
 
+import java.util.Arrays;
+
 public class ReverseNumber {
 	public static void main(String[] args) {
 		int number = 12345;
@@ -9,6 +11,9 @@ public class ReverseNumber {
 		System.out
 				.println(reverseNumber(number) + " reversed number " + number);
 		reverseNumberRecursive(number);
+		
+//		long t1 = System.nanoTime();
+//		System.out.println("t1 - " + (System.nanoTime() - t1) / 1000000000.0);
 
 	}
 
@@ -42,5 +47,20 @@ public class ReverseNumber {
 			counter++;
 		}
 		return counter;
+	}
+	
+	public static int[] invertArray(int[] data) {
+		for (int k = data.length / 2; k >= 0; k--) {
+			int tmp = data[k];
+			data[k] = data[data.length - 1 - k];
+			data[data.length - 1 - k] = tmp;
+		}
+		return data;
+	}
+
+	public static void invert(int[] data) {
+		System.out.print(Arrays.toString(data) + " -> ");
+		invertArray(data);
+		System.out.println(Arrays.toString(data));
 	}
 }
