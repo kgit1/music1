@@ -231,4 +231,81 @@ public class Sort {
 		return array;
 	}
 
+	//////// CHECK
+	private static void shakeSort(int[] v) {
+		boolean end = false;
+		while (!end) {
+			end = true;
+			for (int i = 0; i < v.length - 1; i++) {
+				if (v[i] > v[i + 1]) {
+					int t = v[i];
+					v[i] = v[i + 1];
+					v[i + 1] = t;
+					end = false;
+				}
+			}
+
+			for (int i = v.length - 1; i > 0; i--) {
+				if (v[i] < v[i - 1]) {
+					int t = v[i];
+					v[i] = v[i - 1];
+					v[i - 1] = t;
+					end = false;
+				}
+			}
+		}
+	}
+
+	public void coolSort(int[] v) {
+		float loadFactor = 1.247f;
+		int step = v.length;
+		boolean end = false;
+		int t;
+		while (!end) {
+			end = true;
+			step /= loadFactor;
+			if (step < 1) {
+				step = 1;
+			}
+			for (int i = 0; i < v.length - 1; i++) {
+				if ((i + step) < v.length) {
+					if (v[i] > v[i + step]) {
+						t = v[i];
+						v[i] = v[i + step];
+						v[i + step] = t;
+						end = false;
+					}
+				} else {
+					end = false;
+				}
+
+			}
+
+		}
+	}
+
+	private void oddNotOddSort(int[] v) {
+		boolean end = false;
+		while (!end) {
+			end = true;
+			for (int i = 0; i < v.length - 1; i += 1) {
+				if (v[i] > v[i + 1]) {
+					int t = v[i];
+					v[i] = v[i + 1];
+					v[i + 1] = t;
+					end = false;
+				}
+			}
+
+			for (int i = 1; i < v.length - 1; i += 1) {
+				if (v[i] > v[i + 1]) {
+					int t = v[i];
+					v[i] = v[i + 1];
+					v[i + 1] = t;
+					end = false;
+				}
+			}
+		}
+	}
+
 }
