@@ -20,8 +20,8 @@ public class Sort {
 		arr1 = s.readArray();
 		// System.out.println(Arrays.toString(arr));
 		// System.out.println(Arrays.toString(arr1));
-		s.printAndSort(arr);
-		s.printAndSort2(arr1);
+		s.printAndSort1(arr);
+		s.printAndSort11(arr1);
 		// s.sortInsertion(s.arrayGenerator(50, 50));
 	}
 
@@ -34,7 +34,6 @@ public class Sort {
 		}
 		return array;
 	}
-
 
 	// sort array with Silly Sort
 	public void sortSilly(int[] array) {
@@ -56,23 +55,38 @@ public class Sort {
 		System.out.println(counter);
 	}
 
-	public void sortBuble(int[] array) {
+	// sort array with Bubble Sort dragging min to start
+	public void sortBubble(int[] array) {
 		int counter = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			int min = array[i];
 			for (int j = i + 1; j < array.length; j++) {
 				if (min > array[j]) {
-					// System.out.println("["+min+"] ->"+"["+array[j]+"]");
 					counter++;
 					min = array[j];
 					int tmp = array[i];
 					array[i] = array[j];
 					array[j] = tmp;
 				}
-				// System.out.println("END J, i = " +i);
 			}
 		}
 		System.out.println("Counter:" + counter);
+	}
+
+	//sort array with BuBles Sort pushing max to end
+	public void sortBubble1(int[] array) {
+		int counter = 0;
+		for (int i = array.length - 1; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (array[j] > array[j + 1]) {
+					counter++;
+					int tmp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = tmp;
+				}
+			}
+		}
+		System.out.println("Counter: " + counter);
 	}
 
 	// sort array with Selection Sort
@@ -118,11 +132,18 @@ public class Sort {
 		sortSilly(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
-	
+
 	// print incoming array and sorted version
 	public void printAndSort1(int[] array) {
 		System.out.println("Random array       " + Arrays.toString(array));
-		sortBuble(array);
+		sortBubble(array);
+		System.out.println("Random sorted array" + Arrays.toString(array));
+	}
+
+	// print incoming array and sorted version
+	public void printAndSort11(int[] array) {
+		System.out.println("Random array       " + Arrays.toString(array));
+		sortBubble1(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
