@@ -18,10 +18,10 @@ public class Sort {
 		int[] arr = s.readArray();
 		int[] arr1 = new int[50];
 		arr1 = s.readArray();
-		System.out.println(Arrays.toString(arr));
-		System.out.println(Arrays.toString(arr1));
+		// System.out.println(Arrays.toString(arr));
+		// System.out.println(Arrays.toString(arr1));
 		s.printAndSort(arr);
-		s.printAndSort1(arr1);
+		s.printAndSort2(arr1);
 		// s.sortInsertion(s.arrayGenerator(50, 50));
 	}
 
@@ -33,6 +33,46 @@ public class Sort {
 			array[i] = rand.nextInt(randMax);
 		}
 		return array;
+	}
+
+
+	// sort array with Silly Sort
+	public void sortSilly(int[] array) {
+		int counter = 0;
+		boolean end = false;
+		while (!end) {
+			end = true;
+			for (int i = 0; i < array.length - 1; i++) {
+				if (array[i] > array[i + 1]) {
+					counter++;
+					int tmp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = tmp;
+					end = false;
+					break;
+				}
+			}
+		}
+		System.out.println(counter);
+	}
+
+	public void sortBuble(int[] array) {
+		int counter = 0;
+		for (int i = 0; i < array.length - 1; i++) {
+			int min = array[i];
+			for (int j = i + 1; j < array.length; j++) {
+				if (min > array[j]) {
+					// System.out.println("["+min+"] ->"+"["+array[j]+"]");
+					counter++;
+					min = array[j];
+					int tmp = array[i];
+					array[i] = array[j];
+					array[j] = tmp;
+				}
+				// System.out.println("END J, i = " +i);
+			}
+		}
+		System.out.println("Counter:" + counter);
 	}
 
 	// sort array with Selection Sort
@@ -75,12 +115,26 @@ public class Sort {
 	// print incoming array and sorted version
 	public void printAndSort(int[] array) {
 		System.out.println("Random array       " + Arrays.toString(array));
+		sortSilly(array);
+		System.out.println("Random sorted array" + Arrays.toString(array));
+	}
+	
+	// print incoming array and sorted version
+	public void printAndSort1(int[] array) {
+		System.out.println("Random array       " + Arrays.toString(array));
+		sortBuble(array);
+		System.out.println("Random sorted array" + Arrays.toString(array));
+	}
+
+	// print incoming array and sorted version
+	public void printAndSort2(int[] array) {
+		System.out.println("Random array       " + Arrays.toString(array));
 		sortSelection(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
 	// print incoming array and sorted version
-	public void printAndSort1(int[] array) {
+	public void printAndSort3(int[] array) {
 		System.out.println("Random array       " + Arrays.toString(array));
 		sortInsertion(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
