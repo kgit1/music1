@@ -18,21 +18,19 @@ public class Sort {
 		int[] arr = s.readArray();
 		int[] arr1 = new int[50];
 		arr1 = s.readArray();
+		int[] arr11 = s.readArray();
+		int[] arr111 = s.readArray();
+		int[] arr2 = s.readArray();
+		int[] arr3 = s.readArray();
 		// System.out.println(Arrays.toString(arr));
 		// System.out.println(Arrays.toString(arr1));
-		s.printAndSort1(arr);
-		s.printAndSort11(arr1);
+		s.printAndSort(arr);
+		s.printAndSort1(arr1);
+		s.printAndSort11(arr11);
+		s.printAndSort111(arr111);
+		s.printAndSort2(arr2);
+		s.printAndSort3(arr3);
 		// s.sortInsertion(s.arrayGenerator(50, 50));
-	}
-
-	// generate array with random numbers up to "randMax" with size - "size"
-	public int[] arrayGenerator(int randMax, int size) {
-		int[] array = new int[size];
-		Random rand = new Random();
-		for (int i = 0; i < array.length; i++) {
-			array[i] = rand.nextInt(randMax);
-		}
-		return array;
 	}
 
 	// sort array with Silly Sort
@@ -52,7 +50,7 @@ public class Sort {
 				}
 			}
 		}
-		System.out.println(counter);
+		System.out.println("Counter:" + counter + "\t\t\t\tSilly Sort");
 	}
 
 	// sort array with Bubble Sort dragging min to start
@@ -70,10 +68,11 @@ public class Sort {
 				}
 			}
 		}
-		System.out.println("Counter:" + counter);
+		System.out.println("Counter:" + counter
+				+ "\t\t\t\tBubble Sort dragging min to start");
 	}
 
-	//sort array with BuBles Sort pushing max to end
+	// sort array with BuBles Sort pushing max to end
 	public void sortBubble1(int[] array) {
 		int counter = 0;
 		for (int i = array.length - 1; i > 0; i--) {
@@ -86,7 +85,27 @@ public class Sort {
 				}
 			}
 		}
-		System.out.println("Counter: " + counter);
+		System.out.println("Counter: " + counter
+				+ "\t\t\t\tBuBles Sort pushing max to end");
+	}
+
+	private static void sortBubble11(int[] array) {
+		boolean end = false;
+		int counter = 0;
+		while (!end) {
+			end = true;
+			for (int i = 0; i < array.length - 1; i++) {
+				if (array[i] > array[i + 1]) {
+					counter++;
+					int t = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = t;
+					end = false;
+				}
+			}
+		}
+		System.out.println(
+				"Counter: " + counter + "\t\t\t\tBuBles Sort experimental");
 	}
 
 	// sort array with Selection Sort
@@ -109,7 +128,7 @@ public class Sort {
 				array[i] = tmp;
 			}
 		}
-		System.out.println("Counter: " + counter);
+		System.out.println("Counter: " + counter + "\t\t\t\tSelection Sort");
 	}
 
 	// sort array with Insertion Sort
@@ -123,7 +142,7 @@ public class Sort {
 				array[j] = tmp;
 			}
 		}
-		System.out.println(counter);
+		System.out.println("Counter: " + counter + "\t\t\t\tInsertion Sort");
 	}
 
 	// print incoming array and sorted version
@@ -135,30 +154,47 @@ public class Sort {
 
 	// print incoming array and sorted version
 	public void printAndSort1(int[] array) {
-		System.out.println("Random array       " + Arrays.toString(array));
+		// System.out.println("Random array " + Arrays.toString(array));
 		sortBubble(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
 	// print incoming array and sorted version
 	public void printAndSort11(int[] array) {
-		System.out.println("Random array       " + Arrays.toString(array));
+		// System.out.println("Random array " + Arrays.toString(array));
 		sortBubble1(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
 	// print incoming array and sorted version
+	public void printAndSort111(int[] array) {
+		// System.out.println("Random array " + Arrays.toString(array));
+		sortBubble11(array);
+		System.out.println("Random sorted array" + Arrays.toString(array));
+	}
+
+	// print incoming array and sorted version
 	public void printAndSort2(int[] array) {
-		System.out.println("Random array       " + Arrays.toString(array));
+		// System.out.println("Random array " + Arrays.toString(array));
 		sortSelection(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
 	}
 
 	// print incoming array and sorted version
 	public void printAndSort3(int[] array) {
-		System.out.println("Random array       " + Arrays.toString(array));
+		// System.out.println("Random array " + Arrays.toString(array));
 		sortInsertion(array);
 		System.out.println("Random sorted array" + Arrays.toString(array));
+	}
+
+	// generate array with random numbers up to "randMax" with size - "size"
+	public int[] arrayGenerator(int randMax, int size) {
+		int[] array = new int[size];
+		Random rand = new Random();
+		for (int i = 0; i < array.length; i++) {
+			array[i] = rand.nextInt(randMax);
+		}
+		return array;
 	}
 
 	// write array to file
