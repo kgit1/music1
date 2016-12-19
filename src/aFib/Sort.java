@@ -14,7 +14,7 @@ public class Sort {
 
 	public static void main(String[] args) {
 		Sort s = new Sort();
-		s.writeArray(s.arrayGenerator(150, 50));
+		s.writeArray(s.arrayGenerator(50, 50));
 		int[] arr = s.readArray();
 		int[] arr1 = new int[50];
 		arr1 = s.readArray();
@@ -89,6 +89,7 @@ public class Sort {
 				+ "\t\t\t\tBuBles Sort pushing max to end");
 	}
 
+	// sort array with BuBles Sort
 	private static void sortBubble11(int[] array) {
 		boolean end = false;
 		int counter = 0;
