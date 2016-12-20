@@ -21,6 +21,7 @@ public class Project {
 	int array[];
 	int array2[];
 	int array3[];
+	int select = 1;
 	boolean run = true;
 	MyDrawP drawP;
 
@@ -55,28 +56,20 @@ public class Project {
 		System.out.println(Thread.currentThread().getName());
 
 		while (true) {
-			if (run) {
+			if (select == 1) {
+				run = true;
 				array = readArray();
 				sortSilly(array);
-			} else {
+			} else if (select == 2) {
+				run = true;
 				sortBubble(array);
+				array = readArray();
+			} else if (select == 3) {
+				run = true;
+				sortSelection(array);
 				array = readArray();
 			}
 		}
-
-		// go();
-		// go();
-		// go();
-		// drawRepainter();
-
-	}
-
-	public void go() {
-		array = readArray();
-		sortSilly(array);
-		// sortBubble(array);
-		// array = readArray();
-		// sortSelection(array);
 	}
 
 	public void drawRepainter() {
@@ -121,6 +114,9 @@ public class Project {
 		int counter = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			int min = array[i];
+			if (!run) {
+				break;
+			}
 			for (int j = i + 1; j < array.length; j++) {
 				if (min > array[j]) {
 					counter++;
@@ -129,6 +125,9 @@ public class Project {
 					array[i] = array[j];
 					array[j] = tmp;
 					drawRepainter();
+				}
+				if (!run) {
+					break;
 				}
 			}
 		}
@@ -143,6 +142,9 @@ public class Project {
 			// hold index of minimal number
 			int min = i;
 			for (int j = i + 1; j < array.length; j++) {
+				if (!run) {
+					break;
+				}
 				if (array[j] < array[min]) {
 					// if arr[j] < arr[min], assign j to mi
 					min = j;
@@ -156,6 +158,9 @@ public class Project {
 				array[i] = tmp;
 				drawRepainter();
 			}
+			if (!run) {
+				break;
+			}
 		}
 		System.out.println("Counter: " + counter + "\t\t\t\tSelection Sort");
 	}
@@ -164,10 +169,11 @@ public class Project {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (run) {
-				run = false;
+			run = false;
+			if (select != 3) {
+				select = select + 1;
 			} else {
-				run = true;
+				select = 1;
 			}
 
 		}
