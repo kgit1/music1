@@ -2,6 +2,7 @@ package project;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Project {
@@ -28,13 +30,9 @@ public class Project {
 	public static void main(String[] args) {
 		Project project = new Project();
 		project.array = project.readArray();
-		System.out.println(Arrays.toString(project.array));
 		project.gui();
 
-		// for (int i = 0; i < 50; i++) {
-		// System.out.println("g.fillRect(" + (i * 15 + 10) + ", 500 - array["
-		// + i + "] * 10, 10, array[" + i + "] * 10);");
-		// }
+		
 	}
 
 	public void gui() {
@@ -43,29 +41,41 @@ public class Project {
 
 		JButton button = new JButton("Click");
 		button.addActionListener(new MyButtonListener());
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.RED);
 		mainPanel.add(button);
+		
+//		JPanel firstPanel = new JPanel();
+//		mainPanel.add(firstPanel);
+		
+		JLabel sortLabel = new JLabel("Silly Sort");
+		mainPanel.add(sortLabel);
 
 		drawP = new MyDrawP();
 
 		frame.getContentPane().add(BorderLayout.NORTH, mainPanel);
 		frame.getContentPane().add(BorderLayout.CENTER, drawP);
-		frame.setSize(780, 580);
+
+		frame.setSize(770, 590);
 		frame.setVisible(true);
-		System.out.println(Thread.currentThread().getName());
+		
+		System.out.println(Arrays.toString(array));		
 
 		while (true) {
 			if (select == 1) {
 				run = true;
+				sortLabel.setText("Silly Sort");
 				array = readArray();
 				sortSilly(array);
 			} else if (select == 2) {
 				run = true;
+				sortLabel.setText("Bubble Sort");
 				sortBubble(array);
 				array = readArray();
 			} else if (select == 3) {
 				run = true;
+				sortLabel.setText("Selection Sort");
 				sortSelection(array);
 				array = readArray();
 			}
@@ -73,9 +83,9 @@ public class Project {
 	}
 
 	public void drawRepainter() {
-		drawP.repaint();
 		try {
-			Thread.sleep(20);
+			drawP.repaint();
+			Thread.sleep(50);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -182,14 +192,12 @@ public class Project {
 
 	class MyDrawP extends JPanel {
 		public void paintComponent(Graphics g) {
-			g.setColor(Color.WHITE);
-			g.fillRect(5, 0, 755, 510);
-
-			// System.out.println("repainter");
-			// System.out.println(Thread.currentThread().getName());
+			g.setColor(Color.GREEN);
+			g.fillRect(0, 0, 755, 515);
+			
 			g.setColor(Color.BLUE);
 			for (int i = 0; i < 50; i++) {
-				g.fillRect(i * 15 + 10, 500 - array[i] * 10, 10, array[i] * 10);
+				g.fillRect(i * 15 + 5, 520 - array[i] * 10, 10, array[i] * 10);
 			}
 		}
 	}
