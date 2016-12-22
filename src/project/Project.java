@@ -50,19 +50,27 @@ public class Project {
 		button.addActionListener(new MyButtonListener());
 		mainPanel.add(button);
 
+		JSeparator s = new JSeparator();
+
 		Box box = new Box(BoxLayout.Y_AXIS);
+		Box box1 = new Box(BoxLayout.Y_AXIS);
 
 		laberCounter = new JLabel(counter + " ");
 		laberCounterTimes = new JLabel(counterTimes + " ");
 		box.add(laberCounter);
 		box.add(laberCounterTimes);
 
-		JSeparator s = new JSeparator();
+		JLabel labelCounterField = new JLabel("Element moved ");
+		JLabel labelCounterTimesField = new JLabel("Element checked ");
+		box1.add(labelCounterField);
+		box1.add(s);
+		box1.add(labelCounterTimesField);
 
 		JLabel labelSort = new JLabel("Silly Sort");
 		mainPanel.add(labelSort);
 		mainPanel.add(s);
 		mainPanel.add(box);
+		mainPanel.add(box1);
 
 		drawP = new MyDrawP();
 
@@ -91,10 +99,11 @@ public class Project {
 				array = readArray();
 				sortSelection(array);
 			} else {
-			run=true;
-			labelSort.setText("Gnome Sort");
-			array=readArray();
-			sortGnome(array);}
+				run = true;
+				labelSort.setText("Gnome Sort");
+				array = readArray();
+				sortGnome(array);
+			}
 		}
 	}
 
@@ -232,6 +241,7 @@ public class Project {
 				}
 			}
 		}
+		System.out.println("Counter:" + counter + "\t\t\t\tGnome Sort");
 	}
 
 	class MyButtonListener implements ActionListener {
@@ -252,11 +262,11 @@ public class Project {
 	class MyDrawP extends JPanel {
 		public void paintComponent(Graphics g) {
 			g.setColor(Color.GREEN);
-			g.fillRect(0, 0, 755, 515);
+			g.fillRect(0, 0, 755, 525);
 
 			g.setColor(Color.BLUE);
 			for (int i = 0; i < 50; i++) {
-				g.fillRect(i * 15 + 5, 520 - array[i] * 10, 10, array[i] * 10);
+				g.fillRect(i * 15 + 5, 510 - array[i] * 10, 10, array[i] * 10);
 			}
 		}
 	}
