@@ -90,7 +90,11 @@ public class Project {
 				labelSort.setText("Selection Sort");
 				array = readArray();
 				sortSelection(array);
-			}
+			} else {
+			run=true;
+			labelSort.setText("Gnome Sort");
+			array=readArray();
+			sortGnome(array);}
 		}
 	}
 
@@ -199,6 +203,35 @@ public class Project {
 	}
 
 	public void sortGnome(int[] array) {
+		counter = 0;
+		counterTimes = 0;
+		int i = 1;
+		int j = 2;
+		while (i < array.length) {
+			if (!run) {
+				break;
+			}
+			if (array[i - 1] < array[i]) {
+				i = j;
+				j = j + 1;
+				counter++;
+				laberCounter.setText(counter + "");
+			} else {
+				int tmp = array[i - 1];
+				array[i - 1] = array[i];
+				array[i] = tmp;
+				i = i - 1;
+				counter++;
+				laberCounter.setText(counter + "");
+				counterTimes++;
+				laberCounterTimes.setText(counterTimes + "");
+				drawRepainter();
+				if (i == 0) {
+					i = j;
+					j = j + 1;
+				}
+			}
+		}
 	}
 
 	class MyButtonListener implements ActionListener {
@@ -206,7 +239,7 @@ public class Project {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			run = false;
-			if (select != 3) {
+			if (select != 4) {
 				select = select + 1;
 			} else {
 				select = 1;
