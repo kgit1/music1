@@ -13,17 +13,22 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 public class Project {
 	JFrame frame;
 	int array[];
-	int array2[];
-	int array3[];
+	int counter;
+	int counterTimes;
 	int select = 1;
+	JLabel laberCounter;
+	JLabel laberCounterTimes;
 	boolean run = true;
 	MyDrawP drawP;
 
@@ -32,25 +37,32 @@ public class Project {
 		project.array = project.readArray();
 		project.gui();
 
-		
 	}
 
 	public void gui() {
 		frame = new JFrame("Project 'O'");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JButton button = new JButton("Click");
-		button.addActionListener(new MyButtonListener());
-		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.RED);
+
+		JButton button = new JButton("Click");
+		button.addActionListener(new MyButtonListener());
 		mainPanel.add(button);
-		
-//		JPanel firstPanel = new JPanel();
-//		mainPanel.add(firstPanel);
-		
-		JLabel sortLabel = new JLabel("Silly Sort");
-		mainPanel.add(sortLabel);
+
+		Box box = new Box(BoxLayout.Y_AXIS);
+
+		laberCounter = new JLabel(counter + " ");
+		laberCounterTimes = new JLabel(counterTimes + " ");
+		box.add(laberCounter);
+		box.add(laberCounterTimes);
+
+		JSeparator s = new JSeparator();
+
+		JLabel labelSort = new JLabel("Silly Sort");
+		mainPanel.add(labelSort);
+		mainPanel.add(s);
+		mainPanel.add(box);
 
 		drawP = new MyDrawP();
 
@@ -59,25 +71,25 @@ public class Project {
 
 		frame.setSize(770, 590);
 		frame.setVisible(true);
-		
-		System.out.println(Arrays.toString(array));		
+
+		System.out.println(Arrays.toString(array));
 
 		while (true) {
 			if (select == 1) {
 				run = true;
-				sortLabel.setText("Silly Sort");
+				labelSort.setText("Silly Sort");
 				array = readArray();
 				sortSilly(array);
 			} else if (select == 2) {
 				run = true;
-				sortLabel.setText("Bubble Sort");
-				sortBubble(array);
+				labelSort.setText("Bubble Sort");
 				array = readArray();
+				sortBubble(array);
 			} else if (select == 3) {
 				run = true;
-				sortLabel.setText("Selection Sort");
-				sortSelection(array);
+				labelSort.setText("Selection Sort");
 				array = readArray();
+				sortSelection(array);
 			}
 		}
 	}
@@ -92,7 +104,8 @@ public class Project {
 	}
 
 	public void sortSilly(int[] array) {
-		int counter = 0;
+		counter = 0;
+		counterTimes = 0;
 		boolean end = false;
 		while (!end) {
 			if (!run) {
@@ -102,6 +115,7 @@ public class Project {
 			for (int i = 0; i < array.length - 1; i++) {
 				if (array[i] > array[i + 1]) {
 					counter++;
+					laberCounter.setText(counter + "");
 					int tmp = array[i];
 					array[i] = array[i + 1];
 					array[i + 1] = tmp;
@@ -110,7 +124,8 @@ public class Project {
 					end = false;
 					break;
 				}
-
+				counterTimes++;
+				laberCounterTimes.setText(counterTimes + "");
 				if (!run) {
 					break;
 				}
@@ -121,7 +136,8 @@ public class Project {
 
 	// sort array with Bubble Sort dragging min to start
 	public void sortBubble(int[] array) {
-		int counter = 0;
+		counter = 0;
+		counterTimes = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			int min = array[i];
 			if (!run) {
@@ -130,12 +146,15 @@ public class Project {
 			for (int j = i + 1; j < array.length; j++) {
 				if (min > array[j]) {
 					counter++;
+					laberCounter.setText(counter + "");
 					min = array[j];
 					int tmp = array[i];
 					array[i] = array[j];
 					array[j] = tmp;
 					drawRepainter();
 				}
+				counterTimes++;
+				laberCounterTimes.setText(counterTimes + "");
 				if (!run) {
 					break;
 				}
@@ -147,7 +166,8 @@ public class Project {
 
 	// sort array with Selection Sort
 	public void sortSelection(int[] array) {
-		int counter = 0;
+		counter = 0;
+		counterTimes = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			// hold index of minimal number
 			int min = i;
@@ -159,10 +179,13 @@ public class Project {
 					// if arr[j] < arr[min], assign j to mi
 					min = j;
 				}
+				counterTimes++;
+				laberCounterTimes.setText(counterTimes + "");
 			}
 			// if min not equals to min - switch arr[i] with arr[min]
 			if (i != min) {
 				counter++;
+				laberCounter.setText(counter + "");
 				int tmp = array[min];
 				array[min] = array[i];
 				array[i] = tmp;
@@ -173,6 +196,9 @@ public class Project {
 			}
 		}
 		System.out.println("Counter: " + counter + "\t\t\t\tSelection Sort");
+	}
+
+	public void sortGnome(int[] array) {
 	}
 
 	class MyButtonListener implements ActionListener {
@@ -194,7 +220,7 @@ public class Project {
 		public void paintComponent(Graphics g) {
 			g.setColor(Color.GREEN);
 			g.fillRect(0, 0, 755, 515);
-			
+
 			g.setColor(Color.BLUE);
 			for (int i = 0; i < 50; i++) {
 				g.fillRect(i * 15 + 5, 520 - array[i] * 10, 10, array[i] * 10);
