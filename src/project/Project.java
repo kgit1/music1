@@ -30,7 +30,10 @@ public class Project {
 	int sleepTime = 50;
 	JLabel laberCounter;
 	JLabel laberCounterTimes;
+	JLabel labelSleep;
+	JLabel labelSelect;
 	boolean run = true;
+	boolean cycle = true;
 	MyDrawP drawP;
 
 	public static void main(String[] args) {
@@ -51,11 +54,11 @@ public class Project {
 		button.addActionListener(new MyButtonListener());
 
 		JButton button1 = new JButton("Stop");
-		button.addActionListener(new MyStopButtonListener());
-		JButton button2 = new JButton("SpeedUP");
-		button.addActionListener(new MySpeedUpButtonListener());
-		JButton button3 = new JButton("SpeedDW");
-		button.addActionListener(new MySpeedDownButtonListener());
+		button1.addActionListener(new MyStopButtonListener());
+		// JButton button2 = new JButton("SpeedUP");
+		// button.addActionListener(new MySpeedUpButtonListener());
+		// JButton button3 = new JButton("SpeedDW");
+		// button.addActionListener(new MySpeedDownButtonListener());
 
 		Box box = new Box(BoxLayout.Y_AXIS);
 		Box box1 = new Box(BoxLayout.Y_AXIS);
@@ -66,22 +69,24 @@ public class Project {
 		box.add(laberCounter);
 		box.add(laberCounterTimes);
 		box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120));
-		
-		JLabel labelSleep = new JLabel(sleepTime+"");
+
+		labelSleep = new JLabel(sleepTime + " ");
+		labelSelect = new JLabel("Select " + select + " ");
 
 		JLabel labelCounterField = new JLabel("Element moved ");
 		JLabel labelCounterTimesField = new JLabel("Element checked ");
 		box1.add(labelCounterField);
 		box1.add(labelCounterTimesField);
 		box1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
-		
+
 		box2.add(labelSleep);
+		box2.add(labelSelect);
 		box2.add(box);
 		box2.add(box1);
 		box2.add(button);
 		box2.add(button1);
-		box2.add(button2);
-		box2.add(button3);
+		// box2.add(button2);
+		// box2.add(button3);
 
 		JLabel labelSort = new JLabel("Silly Sort");
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
@@ -101,22 +106,22 @@ public class Project {
 		System.out.println(Arrays.toString(array));
 
 		while (true) {
-			if (select == 1) {
+			if (select == 1 && cycle) {
 				run = true;
 				labelSort.setText("Silly Sort");
 				array = readArray();
 				sortSilly(array);
-			} else if (select == 2) {
+			} else if (select == 2 && cycle) {
 				run = true;
 				labelSort.setText("Bubble Sort");
 				array = readArray();
 				sortBubble(array);
-			} else if (select == 3) {
+			} else if (select == 3 && cycle) {
 				run = true;
 				labelSort.setText("Selection Sort");
 				array = readArray();
 				sortSelection(array);
-			} else {
+			} else if (select == 4 && cycle) {
 				run = true;
 				labelSort.setText("Gnome Sort");
 				array = readArray();
@@ -128,7 +133,7 @@ public class Project {
 	public void drawRepainter() {
 		try {
 			drawP.repaint();
-			Thread.sleep(2000);
+			Thread.sleep(sleepTime);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -139,7 +144,7 @@ public class Project {
 		counterTimes = 0;
 		boolean end = false;
 		while (!end) {
-			if (!run) {
+			if (!run || !cycle) {
 				break;
 			}
 			end = true;
@@ -157,7 +162,7 @@ public class Project {
 				}
 				counterTimes++;
 				laberCounterTimes.setText(counterTimes + "");
-				if (!run) {
+				if (!run || !cycle) {
 					break;
 				}
 			}
@@ -171,7 +176,7 @@ public class Project {
 		counterTimes = 0;
 		for (int i = 0; i < array.length - 1; i++) {
 			int min = array[i];
-			if (!run) {
+			if (!run || !cycle) {
 				break;
 			}
 			for (int j = i + 1; j < array.length; j++) {
@@ -186,7 +191,7 @@ public class Project {
 				}
 				counterTimes++;
 				laberCounterTimes.setText(counterTimes + "");
-				if (!run) {
+				if (!run || !cycle) {
 					break;
 				}
 			}
@@ -203,7 +208,7 @@ public class Project {
 			// hold index of minimal number
 			int min = i;
 			for (int j = i + 1; j < array.length; j++) {
-				if (!run) {
+				if (!run || !cycle) {
 					break;
 				}
 				if (array[j] < array[min]) {
@@ -222,7 +227,7 @@ public class Project {
 				array[i] = tmp;
 				drawRepainter();
 			}
-			if (!run) {
+			if (!run || !cycle) {
 				break;
 			}
 		}
@@ -235,7 +240,7 @@ public class Project {
 		int i = 1;
 		int j = 2;
 		while (i < array.length) {
-			if (!run) {
+			if (!run || !cycle) {
 				break;
 			}
 			if (array[i - 1] < array[i]) {
@@ -272,6 +277,7 @@ public class Project {
 			} else {
 				select = 1;
 			}
+			labelSelect.setText("Select " + select + " ");
 		}
 	}
 
@@ -279,34 +285,40 @@ public class Project {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-	}
-
-	class MySpeedUpButtonListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Action 1");
-			if (sleepTime < 200) {
-				System.out.println("Action 2");
-				sleepTime = sleepTime + 50;
+			if (cycle) {
+				cycle = false;
+				System.out.println("Cycle = false");
+			} else if(!cycle){
+				cycle = true;
+				System.out.println("Cycle = true");
 			}
+
 		}
 	}
 
-	class MySpeedDownButtonListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Action 3");
-			if (sleepTime > 0) {
-				System.out.println("Action 4");
-				sleepTime = sleepTime - 50;
-			}
-		}
-	}
+	// class MySpeedUpButtonListener implements ActionListener {
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// System.out.println("Action 1");
+	// if (sleepTime < 200) {
+	// System.out.println("Action 2");
+	// sleepTime = sleepTime + 50;
+	// }
+	// }
+	// }
+	//
+	// class MySpeedDownButtonListener implements ActionListener {
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// System.out.println("Action 3");
+	// if (sleepTime > 0) {
+	// System.out.println("Action 4");
+	// sleepTime = sleepTime - 50;
+	// }
+	// }
+	// }
 
 	class MyDrawP extends JPanel {
 		public void paintComponent(Graphics g) {
