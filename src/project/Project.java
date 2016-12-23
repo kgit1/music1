@@ -106,6 +106,7 @@ public class Project {
 		System.out.println(Arrays.toString(array));
 
 		while (true) {
+			System.out.println("while");
 			if (select == 1 && cycle) {
 				run = true;
 				labelSort.setText("Silly Sort");
@@ -292,7 +293,6 @@ public class Project {
 				cycle = true;
 				System.out.println("Cycle = true");
 			}
-
 		}
 	}
 
