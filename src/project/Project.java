@@ -27,6 +27,7 @@ public class Project {
 	int counter;
 	int counterTimes;
 	int select = 1;
+	int sleepTime = 50;
 	JLabel laberCounter;
 	JLabel laberCounterTimes;
 	boolean run = true;
@@ -48,9 +49,13 @@ public class Project {
 
 		JButton button = new JButton("Change");
 		button.addActionListener(new MyButtonListener());
-		
+
 		JButton button1 = new JButton("Stop");
 		button.addActionListener(new MyStopButtonListener());
+		JButton button2 = new JButton("SpeedUP");
+		button.addActionListener(new MySpeedUpButtonListener());
+		JButton button3 = new JButton("SpeedDW");
+		button.addActionListener(new MySpeedDownButtonListener());
 
 		Box box = new Box(BoxLayout.Y_AXIS);
 		Box box1 = new Box(BoxLayout.Y_AXIS);
@@ -61,6 +66,8 @@ public class Project {
 		box.add(laberCounter);
 		box.add(laberCounterTimes);
 		box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120));
+		
+		JLabel labelSleep = new JLabel(sleepTime+"");
 
 		JLabel labelCounterField = new JLabel("Element moved ");
 		JLabel labelCounterTimesField = new JLabel("Element checked ");
@@ -68,16 +75,19 @@ public class Project {
 		box1.add(labelCounterTimesField);
 		box1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
 		
+		box2.add(labelSleep);
 		box2.add(box);
 		box2.add(box1);
 		box2.add(button);
 		box2.add(button1);
+		box2.add(button2);
+		box2.add(button3);
 
 		JLabel labelSort = new JLabel("Silly Sort");
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(box2,BorderLayout.EAST);
-		mainPanel.add(labelSort,BorderLayout.WEST);
+		mainPanel.add(box2, BorderLayout.EAST);
+		mainPanel.add(labelSort, BorderLayout.WEST);
 
 		drawP = new MyDrawP();
 
@@ -118,7 +128,7 @@ public class Project {
 	public void drawRepainter() {
 		try {
 			drawP.repaint();
-			Thread.sleep(50);
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -264,14 +274,38 @@ public class Project {
 			}
 		}
 	}
-	
-	class MyStopButtonListener implements ActionListener{
+
+	class MyStopButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
-		}		
+
+		}
+	}
+
+	class MySpeedUpButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action 1");
+			if (sleepTime < 200) {
+				System.out.println("Action 2");
+				sleepTime = sleepTime + 50;
+			}
+		}
+	}
+
+	class MySpeedDownButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action 3");
+			if (sleepTime > 0) {
+				System.out.println("Action 4");
+				sleepTime = sleepTime - 50;
+			}
+		}
 	}
 
 	class MyDrawP extends JPanel {
