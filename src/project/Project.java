@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
 public class Project {
 	JFrame frame;
@@ -46,31 +46,38 @@ public class Project {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(Color.RED);
 
-		JButton button = new JButton("Click");
+		JButton button = new JButton("Change");
 		button.addActionListener(new MyButtonListener());
-		mainPanel.add(button);
-
-		JSeparator s = new JSeparator();
+		
+		JButton button1 = new JButton("Stop");
+		button.addActionListener(new MyStopButtonListener());
 
 		Box box = new Box(BoxLayout.Y_AXIS);
 		Box box1 = new Box(BoxLayout.Y_AXIS);
+		Box box2 = new Box(BoxLayout.X_AXIS);
 
 		laberCounter = new JLabel(counter + " ");
 		laberCounterTimes = new JLabel(counterTimes + " ");
 		box.add(laberCounter);
 		box.add(laberCounterTimes);
+		box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120));
 
 		JLabel labelCounterField = new JLabel("Element moved ");
 		JLabel labelCounterTimesField = new JLabel("Element checked ");
 		box1.add(labelCounterField);
-		box1.add(s);
 		box1.add(labelCounterTimesField);
+		box1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
+		
+		box2.add(box);
+		box2.add(box1);
+		box2.add(button);
+		box2.add(button1);
 
 		JLabel labelSort = new JLabel("Silly Sort");
-		mainPanel.add(labelSort);
-		mainPanel.add(s);
-		mainPanel.add(box);
-		mainPanel.add(box1);
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.add(box2,BorderLayout.EAST);
+		mainPanel.add(labelSort,BorderLayout.WEST);
 
 		drawP = new MyDrawP();
 
@@ -78,6 +85,7 @@ public class Project {
 		frame.getContentPane().add(BorderLayout.CENTER, drawP);
 
 		frame.setSize(770, 590);
+		frame.setMinimumSize(new Dimension(770, 590));
 		frame.setVisible(true);
 
 		System.out.println(Arrays.toString(array));
@@ -254,14 +262,21 @@ public class Project {
 			} else {
 				select = 1;
 			}
-
 		}
+	}
+	
+	class MyStopButtonListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}		
 	}
 
 	class MyDrawP extends JPanel {
 		public void paintComponent(Graphics g) {
-			g.setColor(Color.GREEN);
+			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, 755, 525);
 
 			g.setColor(Color.BLUE);
