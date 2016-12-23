@@ -55,14 +55,15 @@ public class Project {
 
 		JButton button1 = new JButton("Stop");
 		button1.addActionListener(new MyStopButtonListener());
-		// JButton button2 = new JButton("SpeedUP");
-		// button.addActionListener(new MySpeedUpButtonListener());
-		// JButton button3 = new JButton("SpeedDW");
-		// button.addActionListener(new MySpeedDownButtonListener());
+		JButton button2 = new JButton("SpeedUP");
+		button2.addActionListener(new MySpeedUpButtonListener());
+		JButton button3 = new JButton("SpeedDW");
+		button3.addActionListener(new MySpeedDownButtonListener());
 
 		Box box = new Box(BoxLayout.Y_AXIS);
 		Box box1 = new Box(BoxLayout.Y_AXIS);
 		Box box2 = new Box(BoxLayout.X_AXIS);
+		Box box3 = new Box(BoxLayout.Y_AXIS);
 
 		laberCounter = new JLabel(counter + " ");
 		laberCounterTimes = new JLabel(counterTimes + " ");
@@ -70,8 +71,8 @@ public class Project {
 		box.add(laberCounterTimes);
 		box.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 120));
 
-		labelSleep = new JLabel(sleepTime + " ");
-		labelSelect = new JLabel("Select " + select + " ");
+		labelSleep = new JLabel("Sleep " + sleepTime);
+		labelSelect = new JLabel("Select " + select);
 
 		JLabel labelCounterField = new JLabel("Element moved ");
 		JLabel labelCounterTimesField = new JLabel("Element checked ");
@@ -79,14 +80,15 @@ public class Project {
 		box1.add(labelCounterTimesField);
 		box1.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
 
-		box2.add(labelSleep);
-		box2.add(labelSelect);
+		box3.add(labelSleep);
+		box3.add(labelSelect);
 		box2.add(box);
 		box2.add(box1);
+		box2.add(box3);
 		box2.add(button);
 		box2.add(button1);
-		// box2.add(button2);
-		// box2.add(button3);
+		box2.add(button2);
+		box2.add(button3);
 
 		JLabel labelSort = new JLabel("Silly Sort");
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
@@ -289,36 +291,40 @@ public class Project {
 			if (cycle) {
 				cycle = false;
 				System.out.println("Cycle = false");
-			} else if(!cycle){
+			} else if (!cycle) {
 				cycle = true;
 				System.out.println("Cycle = true");
 			}
 		}
+
 	}
 
-	// class MySpeedUpButtonListener implements ActionListener {
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// System.out.println("Action 1");
-	// if (sleepTime < 200) {
-	// System.out.println("Action 2");
-	// sleepTime = sleepTime + 50;
-	// }
-	// }
-	// }
-	//
-	// class MySpeedDownButtonListener implements ActionListener {
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// System.out.println("Action 3");
-	// if (sleepTime > 0) {
-	// System.out.println("Action 4");
-	// sleepTime = sleepTime - 50;
-	// }
-	// }
-	// }
+	class MySpeedUpButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action 3");
+			if (sleepTime > 50) {
+				System.out.println("Action 4");
+				sleepTime = sleepTime - 50;
+			}
+			labelSleep.setText("Sleep " + sleepTime);
+		}
+	}
+
+	class MySpeedDownButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action 1");
+			if (sleepTime < 400) {
+				System.out.println("Action 2");
+				sleepTime = sleepTime + 50;
+			}
+			labelSleep.setText("Sleep " + sleepTime);
+		}
+
+	}
 
 	class MyDrawP extends JPanel {
 		public void paintComponent(Graphics g) {
