@@ -39,7 +39,10 @@ public class Project {
 	public static void main(String[] args) {
 		Project project = new Project();
 		project.array = project.readArray();
-		project.gui();
+
+		project.bsort(project.array);
+
+		// project.gui();
 
 	}
 
@@ -270,6 +273,38 @@ public class Project {
 		System.out.println("Counter:" + counter + "\t\t\t\tGnome Sort");
 	}
 
+	public void bsort(int[] array) {
+
+		System.out.println(Arrays.toString(array));
+		for (int i = 0; i < array.length - 1; i++) {
+			for (int j = 0; j < array.length - 1 - i; j++) {
+				System.out.println("j " + j);
+				if (array[j] > array[j + 1]) {
+					int tmp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = tmp;
+				}
+			}
+		}
+
+		System.out.println(Arrays.toString(array));
+
+		// boolean change = true;
+		// System.out.println(Arrays.toString(array));
+		// while (change) {
+		// change = false;
+		// for (int i = 0; i < array.length-1; i++) {
+		// if (array[i] > array[i + 1]) {
+		// int tmp = array[i + 1];
+		// array[i + 1] = array[i];
+		// array[i] = tmp;
+		// change = true;
+		// }
+		// }
+		// }
+		// System.out.println(Arrays.toString(array));
+	}
+
 	class MyButtonListener implements ActionListener {
 
 		@Override
@@ -359,95 +394,94 @@ public class Project {
 
 }
 
-//merge sort
+// merge sort
 
-//public class Mergesort {
-//    private int[] numbers;
-//    private int[] helper;
+// public class Mergesort {
+// private int[] numbers;
+// private int[] helper;
 //
-//    private int number;
+// private int number;
 //
-//    public void sort(int[] values) {
-//            this.numbers = values;
-//            number = values.length;
-//            this.helper = new int[number];
-//            mergesort(0, number - 1);
-//    }
+// public void sort(int[] values) {
+// this.numbers = values;
+// number = values.length;
+// this.helper = new int[number];
+// mergesort(0, number - 1);
+// }
 //
-//    private void mergesort(int low, int high) {
-//            // check if low is smaller then high, if not then the array is sorted
-//            if (low < high) {
-//                    // Get the index of the element which is in the middle
-//                    int middle = low + (high - low) / 2;
-//                    // Sort the left side of the array
-//                    mergesort(low, middle);
-//                    // Sort the right side of the array
-//                    mergesort(middle + 1, high);
-//                    // Combine them both
-//                    merge(low, middle, high);
-//            }
-//    }
+// private void mergesort(int low, int high) {
+// // check if low is smaller then high, if not then the array is sorted
+// if (low < high) {
+// // Get the index of the element which is in the middle
+// int middle = low + (high - low) / 2;
+// // Sort the left side of the array
+// mergesort(low, middle);
+// // Sort the right side of the array
+// mergesort(middle + 1, high);
+// // Combine them both
+// merge(low, middle, high);
+// }
+// }
 //
-//    private void merge(int low, int middle, int high) {
+// private void merge(int low, int middle, int high) {
 //
-//            // Copy both parts into the helper array
-//            for (int i = low; i <= high; i++) {
-//                    helper[i] = numbers[i];
-//            }
+// // Copy both parts into the helper array
+// for (int i = low; i <= high; i++) {
+// helper[i] = numbers[i];
+// }
 //
-//            int i = low;
-//            int j = middle + 1;
-//            int k = low;
-//            // Copy the smallest values from either the left or the right side back
-//            // to the original array
-//            while (i <= middle && j <= high) {
-//                    if (helper[i] <= helper[j]) {
-//                            numbers[k] = helper[i];
-//                            i++;
-//                    } else {
-//                            numbers[k] = helper[j];
-//                            j++;
-//                    }
-//                    k++;
-//            }
-//            // Copy the rest of the left side of the array into the target array
-//            while (i <= middle) {
-//                    numbers[k] = helper[i];
-//                    k++;
-//                    i++;
-//            }
+// int i = low;
+// int j = middle + 1;
+// int k = low;
+// // Copy the smallest values from either the left or the right side back
+// // to the original array
+// while (i <= middle && j <= high) {
+// if (helper[i] <= helper[j]) {
+// numbers[k] = helper[i];
+// i++;
+// } else {
+// numbers[k] = helper[j];
+// j++;
+// }
+// k++;
+// }
+// // Copy the rest of the left side of the array into the target array
+// while (i <= middle) {
+// numbers[k] = helper[i];
+// k++;
+// i++;
+// }
 //
-//    }
-//}
+// }
+// }
 
+// shellsort
 
-//shellsort
-
-//class Shellsort {
-//    public static void main(String args[]) {
-//        int[] array = new int[] { 3, 2, 5, 4, 1 };
-// 
-//        int i1, i, j, increment, temp, number_of_elements = array.length;
-//         /* Shell Sort Program */
-//         for (increment = number_of_elements / 2; increment > 0; increment /= 2)
-//         {
-//                for (i = increment; i < number_of_elements; i++)
-//             {
-//                    temp = array[i];
-//                        for (j = i; j >= increment; j -= increment) 
-//                    {
-//                            if (temp < array[j - increment]) {
-//                                array[j] = array[j - increment];
-//                            } else {
-//                                break;
-//                            }
-//                        }
-//                       array[j] = temp;
-//            }
-//        }
-//        System.out.println("After Sorting:");
-//        for (i1 = 0; i1 < 5; i1++) {
-//            System.out.println(array[i1]);
-//        }
-//    }
-//}
+// class Shellsort {
+// public static void main(String args[]) {
+// int[] array = new int[] { 3, 2, 5, 4, 1 };
+//
+// int i1, i, j, increment, temp, number_of_elements = array.length;
+// /* Shell Sort Program */
+// for (increment = number_of_elements / 2; increment > 0; increment /= 2)
+// {
+// for (i = increment; i < number_of_elements; i++)
+// {
+// temp = array[i];
+// for (j = i; j >= increment; j -= increment)
+// {
+// if (temp < array[j - increment]) {
+// array[j] = array[j - increment];
+// } else {
+// break;
+// }
+// }
+// array[j] = temp;
+// }
+// }
+// System.out.println("After Sorting:");
+// for (i1 = 0; i1 < 5; i1++) {
+// System.out.println(array[i1]);
+// }
+// }
+// }
