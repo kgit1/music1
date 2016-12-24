@@ -40,9 +40,9 @@ public class Project {
 		Project project = new Project();
 		project.array = project.readArray();
 
-		project.bsort(project.array);
+		// project.bsort(project.array);
 
-		// project.gui();
+		project.gui();
 
 	}
 
@@ -181,18 +181,16 @@ public class Project {
 		counter = 0;
 		counterTimes = 0;
 		for (int i = 0; i < array.length - 1; i++) {
-			int min = array[i];
 			if (!run || !cycle) {
 				break;
 			}
-			for (int j = i + 1; j < array.length; j++) {
-				if (min > array[j]) {
+			for (int j = 0; j < array.length - 1 - i; j++) {
+				if (array[j] > array[j + 1]) {
 					counter++;
 					laberCounter.setText(counter + "");
-					min = array[j];
-					int tmp = array[i];
-					array[i] = array[j];
-					array[j] = tmp;
+					int tmp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = tmp;
 					drawRepainter();
 				}
 				counterTimes++;
@@ -303,6 +301,33 @@ public class Project {
 		// }
 		// }
 		// System.out.println(Arrays.toString(array));
+
+		// counter = 0;
+		// counterTimes = 0;
+		// for (int i = 0; i < array.length - 1; i++) {
+		// int min = array[i];
+		// if (!run || !cycle) {
+		// break;
+		// }
+		// for (int j = i + 1; j < array.length; j++) {
+		// if (min > array[j]) {
+		// counter++;
+		// laberCounter.setText(counter + "");
+		// min = array[j];
+		// int tmp = array[i];
+		// array[i] = array[j];
+		// array[j] = tmp;
+		// drawRepainter();
+		// }
+		// counterTimes++;
+		// laberCounterTimes.setText(counterTimes + "");
+		// if (!run || !cycle) {
+		// break;
+		// }
+		// }
+		// }
+		// System.out.println("Counter:" + counter
+		// + "\t\t\t\tBubble Sort dragging min to start");
 	}
 
 	class MyButtonListener implements ActionListener {
@@ -338,9 +363,7 @@ public class Project {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Action 3");
 			if (sleepTime > 50) {
-				System.out.println("Action 4");
 				sleepTime = sleepTime - 50;
 			}
 			labelSleep.setText("Sleep " + sleepTime);
@@ -351,9 +374,7 @@ public class Project {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Action 1");
 			if (sleepTime < 400) {
-				System.out.println("Action 2");
 				sleepTime = sleepTime + 50;
 			}
 			labelSleep.setText("Sleep " + sleepTime);
