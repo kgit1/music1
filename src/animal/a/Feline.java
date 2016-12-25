@@ -1,4 +1,4 @@
-package animal;
+package animal.a;
 
 public class Feline implements Animal {
 	String name = "feline";

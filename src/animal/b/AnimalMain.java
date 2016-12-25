@@ -1,4 +1,4 @@
-package animal;
+package animal.b;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +14,11 @@ public class AnimalMain {
 		Dog dog = new Dog();
 		Cat cat = new Cat();
 
+		// Animal animal = new Animal();
 		Animal canine1 = new Canine();
 		Animal feline1 = new Feline();
 		Animal dog1 = new Dog();
 		Animal cat1 = new Cat();
-
-		anAnimal(dog);
-
-//		anAnimalArray(animalList);
-		anAnimalArray(animalArray);
-
-		anAnimalList(animalList);
-		anAnimalList(animalArray);
 
 		animalList.add(canine);
 		animalList.add(feline);
@@ -39,8 +32,17 @@ public class AnimalMain {
 
 		for (Animal animal : animalList) {
 			animal.voice();
+			animal.getName();
 			System.out.println(animal);
 		}
+
+		anAnimal(dog);
+
+		// anAnimalArray(animalList);
+		anAnimalArray(animalArray);
+
+		anAnimalList(animalList);
+		anAnimalList(animalArray);
 
 	}
 

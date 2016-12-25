@@ -1,11 +1,12 @@
-package animal;
+package animal.b;
 
-public class Cat extends Feline{
-	String name = "cat";
+public class Canine extends Animal{
+
+	String name = "canine";
 
 	@Override
 	public void voice() {
-		System.out.println("I'm a cat");
+		System.out.println("I'm canine");
 
 	}
 
@@ -13,4 +14,6 @@ public class Cat extends Feline{
 	public String toString() {
 		return "Canine [name=" + name + "]";
 	}
+	
+
 }
