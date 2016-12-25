@@ -1,4 +1,4 @@
-package project;
+package aProject;
 
 public class ProjectArrayTests {
 
