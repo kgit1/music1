@@ -36,7 +36,7 @@ public class AnimalMain {
 			animal.getName();
 			System.out.println(animal);
 		}
- 
+
 		anAnimal(dog);
 
 		// anAnimalArray(animalList);
@@ -44,10 +44,8 @@ public class AnimalMain {
 
 		anAnimalList(animalList);
 		anAnimalList(animalArray);
-		
+
 		it(animalArray.iterator());
-		
-		
 
 	}
 
@@ -62,9 +60,9 @@ public class AnimalMain {
 	public static void anAnimalList(List<Animal> animal) {
 		System.out.println(animal);
 	}
-	
-	public static void it(Iterator<Animal> it){
-		while(it.hasNext()){
+
+	public static void it(Iterator<Animal> it) {
+		while (it.hasNext()) {
 			System.out.println(it.next());
 		}
 	}
