@@ -1,6 +1,7 @@
 package animal.b;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AnimalMain {
@@ -43,6 +44,10 @@ public class AnimalMain {
 
 		anAnimalList(animalList);
 		anAnimalList(animalArray);
+		
+		it(animalArray.iterator());
+		
+		
 
 	}
 
@@ -56,6 +61,12 @@ public class AnimalMain {
 
 	public static void anAnimalList(List<Animal> animal) {
 		System.out.println(animal);
+	}
+	
+	public static void it(Iterator<Animal> it){
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
 	}
 
 }
