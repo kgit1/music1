@@ -35,7 +35,7 @@ public class AnimalMain {
 			animal.getName();
 			System.out.println(animal);
 		}
-
+ 
 		anAnimal(dog);
 
 		// anAnimalArray(animalList);
