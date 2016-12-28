@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Random;
 
 public class MultiIterableClass extends IterableClass {
+	public MultiIterableClass(String[] words) {
+		super(words);
+	}
+
 	public Iterable<String> reversed() {
 		return new Iterable<String>() {
 			public Iterator<String> iterator() {
@@ -38,7 +42,9 @@ public class MultiIterableClass extends IterableClass {
 	}
 
 	public static void main(String[] args) {
-		MultiIterableClass mul = new MultiIterableClass();
+		MultiIterableClass mul = new MultiIterableClass(
+				("And that is how we know the Earth to be " + "banana-shaped.")
+						.split(" "));
 
 		for (String string : mul) {
 			System.out.print(string + " ");
