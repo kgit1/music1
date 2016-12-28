@@ -1,4 +1,4 @@
-package aCollections.AdapterMethodReverseForeach;
+package aCollections.AdapterMethodReverseIterator;
 
 import java.util.ArrayList;
 import java.util.Collection;

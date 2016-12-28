@@ -1,4 +1,4 @@
-package aCollections.AdapterMethodReverseForeach;
+package aCollections.AdapterMethodReverseIterator;
 
 import java.util.Arrays;
 
