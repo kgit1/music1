@@ -2,7 +2,7 @@ package aCollections.AdapterMethodReverseIterator;
 
 import java.util.Arrays;
 
-public class Adaptermethodidiom {
+public class AdapterMethodIdiom {
 
 	public static void main(String[] args) {
 		ReversibleArrayList<String> reversible = new ReversibleArrayList<>(
