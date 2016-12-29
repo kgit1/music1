@@ -65,6 +65,7 @@ public class DynamicFields {
 		// if empty found - assign id to it, and return it's index
 		for (int i = 0; i < fields.length; i++) {
 			if (fields[i][0] == null) {
+				System.out.println(fields[i][0]);
 				fields[i][0] = id;
 				return i;
 			}
@@ -81,8 +82,9 @@ public class DynamicFields {
 		// initialize last(new) element in new array with objects array consists
 		// of pair of elements
 		for (int i = fields.length; i < tmp.length; i++) {
-			tmp[i] = new Object[][] { null, null };
+			tmp[i] = new Object[] { null, null };
 		}
+		fields = tmp;
 		// recursive call our method second time to finish adding item to list
 		return makeField(id);
 	}
@@ -137,4 +139,26 @@ public class DynamicFields {
 		fields[fieldNumber][1] = value;
 		return result;
 	}
+
+	public static void main(String[] args) {
+		DynamicFields df = new DynamicFields(3);
+		System.out.println(df);
+		try {
+			df.setField("d", "Value D");
+			df.setField("number1", 47);
+			df.setField("number2", 48);
+			System.out.println(df);
+			df.setField("d", "New Value of the D");
+			df.setField("number3", 49);
+			System.out.println();
+			System.out.println(df.getField("d"));
+		} catch (DynamycFieldsException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(df);
+	}
+
 }
