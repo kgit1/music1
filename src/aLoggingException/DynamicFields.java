@@ -155,7 +155,6 @@ public class DynamicFields {
 		} catch (DynamycFieldsException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(df);
