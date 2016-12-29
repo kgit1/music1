@@ -87,4 +87,12 @@ public class DynamicFields {
 		return makeField(id);
 	}
 
+	// method to return value of asked key
+	// calls getFieldNumber method inside to get keys index or return exception
+	// if not exists
+	public Object getfield(String id) throws NoSuchFieldException {
+		return fields[getFieldNumber(id)][1];
+	}
+	
+	
 }
