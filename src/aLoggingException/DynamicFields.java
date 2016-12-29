@@ -93,22 +93,45 @@ public class DynamicFields {
 	public Object getField(String id) throws NoSuchFieldException {
 		return fields[getFieldNumber(id)][1];
 	}
-	
+
+	// method to set value to chosen key
 	public Object setField(String id, Object value)
-			throws DynamycFieldsException{
-		if(value == null){
+			throws DynamycFieldsException {
+		// if transmitted by argument value = null - we call our exception
+		// usually exception haven't constructors to take reason of exception
+		// and if our exception haven't such constructor to
+		// we can just call initCase() method available for all
+		// subclasses of Throwable
+		if (value == null) {
 			DynamycFieldsException dfe = new DynamycFieldsException();
 			dfe.initCause(new NullPointerException());
 			throw dfe;
 		}
+		// initialize int fieldNumber with result of method hasField which
+		// returns us index of key or -1 if not exists
 		int fieldNumber = hasField(id);
-		if(fieldNumber == -1){
+		// if fieldNumber got -1, means field not exists - we call makeField
+		// method wchich will add new key to our list, or if list full - will
+		// create new 1 element bigger list, copy all data to it and put our new
+		// key as the last element
+		if (fieldNumber == -1) {
 			fieldNumber = makeField(id);
 		}
+		// create object to hold result of our method
 		Object result = null;
-		try{
+		try {
+			// try to assign to result data sent by the getField method
+			// to check one more time does key equals to id exists
+			// because if not exists - means something gone wrong earlier in our
+			// program
+			// where we was supposed to recheck it and create new if not exists
 			result = getField(id);
-		}catch(NoSuchFieldException e){
+		} catch (NoSuchFieldException e) {
+			// and if something gone wrong and we got here
+			// this time we need to throw RuntimeExcetion
+			// because if we there - we have serious error somewhere earlier
+			// and we create new RuntimeException with constructor which can
+			// take our exception as argument to have full data available
 			throw new RuntimeException(e);
 		}
 		fields[fieldNumber][1] = value;
