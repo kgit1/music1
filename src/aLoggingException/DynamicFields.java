@@ -90,9 +90,28 @@ public class DynamicFields {
 	// method to return value of asked key
 	// calls getFieldNumber method inside to get keys index or return exception
 	// if not exists
-	public Object getfield(String id) throws NoSuchFieldException {
+	public Object getField(String id) throws NoSuchFieldException {
 		return fields[getFieldNumber(id)][1];
 	}
 	
-	
+	public Object setField(String id, Object value)
+			throws DynamycFieldsException{
+		if(value == null){
+			DynamycFieldsException dfe = new DynamycFieldsException();
+			dfe.initCause(new NullPointerException());
+			throw dfe;
+		}
+		int fieldNumber = hasField(id);
+		if(fieldNumber == -1){
+			fieldNumber = makeField(id);
+		}
+		Object result = null;
+		try{
+			result = getField(id);
+		}catch(NoSuchFieldException e){
+			throw new RuntimeException(e);
+		}
+		fields[fieldNumber][1] = value;
+		return result;
+	}
 }
