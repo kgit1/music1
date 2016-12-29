@@ -14,6 +14,7 @@ public class LoggengExceptions2 {
 		StringWriter trace = new StringWriter();
 		// create e.printStackTrace(), usually it dosn't return String,
 		// so we need printStackTrace with PrintWriter in argument
+		// and StringWriter will help to return data with simple toString()
 		e.printStackTrace(new PrintWriter(trace));
 		logger.severe(trace.toString());
 	}
