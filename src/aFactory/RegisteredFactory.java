@@ -113,21 +113,27 @@ class PowerSteeringBelt extends Belt {
 public class RegisteredFactory {
 	HashMap<String, Integer> listOfParts = new HashMap<>();
 	List<Part> list = new ArrayList<>();
-
-	public void c(List <Part> list) {
-		Integer quantity;
-		for (Part part : list) {
-			
+	
+	public void CounterItemsPutToMap(String obj){
+		Integer quantity = listOfParts.get(obj);
+		System.out.println(obj);
+		if(quantity == null){
+			listOfParts.put(obj, 1);
+		}else{
+			listOfParts.put(obj, quantity+1);
 		}
 	}
 
+
 	public static void main(String[] args) {
 		RegisteredFactory rf = new RegisteredFactory();
-//		rf.c("");
 		for (int i = 0; i < 20; i++) {
-			rf.list.add(Part.createRandom());
+			Part part = Part.createRandom();
+			rf.CounterItemsPutToMap(part.getClass().getSimpleName());
+			rf.list.add(part);
 		}
 		System.out.println(rf.list);
+		System.out.println(rf.listOfParts);
 
 	}
 
