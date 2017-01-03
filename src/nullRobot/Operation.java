@@ -1,5 +1,7 @@
 package nullRobot;
 
-public class Operation {
+public interface Operation {
+	String description();
+	void command();
 
 }

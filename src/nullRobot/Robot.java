@@ -13,6 +13,12 @@ public interface Robot {
 			if(r instanceof Null){
 				System.out.println("[Null Robot]");
 			}
+			System.out.println("Name: " + r.name());
+			System.out.println("Model: " + r.model());
+			for(Operation operation : r.operations()){
+				System.out.println(operation.description());
+				operation.command();
+			}
 		}
 	}
 }
