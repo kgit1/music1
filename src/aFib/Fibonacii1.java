@@ -31,29 +31,31 @@ public class Fibonacii1 implements Generator<Integer> {
 	}
 
 }
+
+// how it works?
 class IterableFibonacii extends Fibonacii1 implements Iterable<Integer> {
 	private int number;
-	
+
 	public IterableFibonacii(int number) {
 		this.number = number;
 	}
-	
+
 	@Override
 	public Iterator<Integer> iterator() {
 		return new Iterator<Integer>() {
-			
+
 			@Override
 			public boolean hasNext() {
 				return number > 0;
 			}
-			
+
 			@Override
 			public Integer next() {
 				number--;
 				return IterableFibonacii.this.next();
 			}
-			
+
 		};
 	}
-	
+
 }
