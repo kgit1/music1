@@ -31,7 +31,7 @@ public class Fibonacci {
 		int fib = fibonacci(number - 1) + fibonacci(number - 2);
 		return fib;
 	}
-	
+
 	public void fibonacciIteration(int number) {
 		System.out.println("Fibonacci numbers");
 		for (int i = 0; i <= number; i++) {
