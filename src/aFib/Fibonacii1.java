@@ -33,6 +33,10 @@ public class Fibonacii1 implements Generator<Integer> {
 }
 
 // how it works?
+// we just make our class Fibonacii1 work like Iterable
+// to do this we make class which extends Fibonacii1 and implements Iterable
+// every call to iterator next()(when it runs in forEach) method
+// returns next() method from superclass(Fibonacii1)
 class IterableFibonacii extends Fibonacii1 implements Iterable<Integer> {
 	private int number;
 
@@ -50,7 +54,12 @@ class IterableFibonacii extends Fibonacii1 implements Iterable<Integer> {
 			}
 
 			@Override
+
+			// next makes number smaller by 1 and calls next() from superclass
+			// this number is just checker when to stop calling next() from
+			// superclass
 			public Integer next() {
+				// System.out.println(number);
 				number--;
 				return IterableFibonacii.this.next();
 			}
