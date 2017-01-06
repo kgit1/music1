@@ -121,9 +121,7 @@ class Sets {
 	// returns set consists of members unique to a
 	public static <T> Set<T> difference(Set<T> a, Set<T> b) {
 		Set<T> result = new HashSet<>(a);
-		// System.out.println("result in Sets" + result);
 		result.removeAll(b);
-		// System.out.println("result in Sets" + result);
 		return result;
 	}
 
