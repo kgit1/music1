@@ -1,7 +1,6 @@
 package aStore;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Random;
 
 import aFib.Generator;
