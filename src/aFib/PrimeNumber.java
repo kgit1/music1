@@ -7,7 +7,7 @@ public class PrimeNumber {
 	public static void main(String[] args) {
 		// just counter for output formating and boundaries of cycle
 		int counter = 0;
-		for (int i = 0; counter < 12 * 14; i++) {
+		for (int i = 1; counter < 12 * 14; i++) {
 			// check if number prime
 			if (prime(i)) {
 				counter++;
