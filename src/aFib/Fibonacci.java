@@ -3,6 +3,9 @@ package aFib;
 public class Fibonacci {
 
 	public static void main(String[] args) {
+		// fibonaciiSequence
+		// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987,
+		// 1597, 2584, 4181, 6765, 10946
 		printFibonacciSequence1(10);
 		printFibonacciSequence2(10);
 		printFibonacciSequence3(10);
@@ -28,11 +31,10 @@ public class Fibonacci {
 	}
 
 	public static int[] fibonacciIterative1(int number) {
-		int[] result = new int[number + 2];		
+		int[] result = new int[number + 2];
 		result[0] = 0;
 		result[1] = 1;
-		result[2] = 1;
-		for (int k = 3; k < result.length; k++) {
+		for (int k = 2; k < result.length; k++) {
 			result[k] = result[k - 2] + result[k - 1];
 		}
 		return result;
