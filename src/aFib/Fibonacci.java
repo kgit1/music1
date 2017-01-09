@@ -27,19 +27,15 @@ public class Fibonacci {
 		return fib;
 	}
 
-	public static int fibonacciIterative1(int number) {
-		if (number == 0)
-			return 0;
-		if (number < 3)
-			return 1;
-		int[] result = new int[number + 2];
+	public static int[] fibonacciIterative1(int number) {
+		int[] result = new int[number + 2];		
 		result[0] = 0;
 		result[1] = 1;
 		result[2] = 1;
 		for (int k = 3; k < result.length; k++) {
 			result[k] = result[k - 2] + result[k - 1];
 		}
-		return result[number];
+		return result;
 	}
 
 	public static int fibonacciRecursive(int number) {
@@ -68,8 +64,9 @@ public class Fibonacci {
 	}
 
 	public static void printFibonacciSequence2(int number) {
+		int[] array = fibonacciIterative1(number);
 		for (int i = 0; i <= number; i++) {
-			System.out.print(fibonacciIterative1(i) + " ");
+			System.out.print(array[i] + " ");
 		}
 		System.out.println(" Fibonacci numbers fibonacciIterative1");
 	}
