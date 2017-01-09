@@ -14,7 +14,7 @@ public class PrimeNumberEratosthenes {
 		printArray(a);
 	}
 
-	//
+	//sieve of Erathosthenes - resheto eratosfena
 	public static boolean[] sieveOfErathosthenes(boolean[] flags) {
 		// primary array initiated with all false numbers
 		// all prime numbers except 2 is odd
@@ -26,7 +26,7 @@ public class PrimeNumberEratosthenes {
 		return flags;
 	}
 
-	// initializes all odd indexes with false, because even numbers except 2
+	// initializes all odd indexes with true, because even numbers except 2
 	// can't be prime
 	public static void init(boolean[] flags) {
 		flags[2] = true;
