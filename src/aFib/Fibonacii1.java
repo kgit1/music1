@@ -12,10 +12,10 @@ public class Fibonacii1 implements Generator<Integer> {
 
 	private int fibonacii(int number) {
 		if (number < 2) {
-			return 1;
-		} else {
+			return 1;}
+//		} else {
 			return fibonacii(number - 1) + fibonacii(number - 2);
-		}
+//		}
 	}
 
 	public static void main(String[] args) {

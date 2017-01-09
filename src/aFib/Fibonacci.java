@@ -3,17 +3,23 @@ package aFib;
 public class Fibonacci {
 
 	public static void main(String[] args) {
-		for (int i = 2; i < 10; i++) {
-
-			System.out.println(new Fibonacci().fibonacci(i));
-		}
+		printFibonacciSequence1(10);
+		printFibonacciSequence2(10);
+		printFibonacciSequence3(10);
+		printFibonacciSequence4(10);
 	}
 
-	public int fibonacci(int number) {
+	public static int fibonacciIterative(int number) {
+		if (number == 0) {
+			return 0;
+		}
+		if (number < 3) {
+			return 1;
+		}
 		int one = 1;
 		int two = 1;
 		int fib = 0;
-		for (int i = 1; i < number; i++) {
+		for (int i = 2; i < number; i++) {
 			fib = one + two;
 			one = two;
 			two = fib;
@@ -21,45 +27,65 @@ public class Fibonacci {
 		return fib;
 	}
 
-	public int fibonacci1(int number) {
-		if (number == 0) {
+	public static int fibonacciIterative1(int number) {
+		if (number == 0)
 			return 0;
-		}
-		if (number < 3) {
+		if (number < 3)
 			return 1;
-		}
-		int fib = fibonacci(number - 1) + fibonacci(number - 2);
-		return fib;
-	}
-
-	public void fibonacciIteration(int number) {
-		System.out.println("Fibonacci numbers");
-		for (int i = 0; i <= number; i++) {
-			System.out.println(i + " - " + fibonacciRecursive(i));
-		}
-	}
-
-	public int fibonacciRecursive(int arg) {
-		if (arg == 0) {
-			return 0;
-		}
-		return arg < 3 ? 1
-				: fibonacciRecursive(arg - 2) + fibonacciRecursive(arg - 1);
-	}
-
-	public int fibonacciIterative(int arg) {
-		if (arg == 0)
-			return 0;
-		if (arg < 3)
-			return 1;
-		int[] result = new int[arg + 2];
+		int[] result = new int[number + 2];
 		result[0] = 0;
 		result[1] = 1;
 		result[2] = 1;
 		for (int k = 3; k < result.length; k++) {
 			result[k] = result[k - 2] + result[k - 1];
 		}
-		return result[arg];
+		return result[number];
+	}
+
+	public static int fibonacciRecursive(int number) {
+		if (number == 0) {
+			return 0;
+		}
+		if (number < 3) {
+			return 1;
+		}
+		return fibonacciRecursive(number - 2) + fibonacciRecursive(number - 1);
+	}
+
+	public static int fibonacciRecursive1(int arg) {
+		if (arg == 0) {
+			return 0;
+		}
+		return arg < 3 ? 1
+				: fibonacciRecursive1(arg - 2) + fibonacciRecursive1(arg - 1);
+	}
+
+	public static void printFibonacciSequence1(int number) {
+		for (int i = 0; i <= number; i++) {
+			System.out.print(fibonacciIterative(i) + " ");
+		}
+		System.out.println(" Fibonacci numbers fibonacciIterative");
+	}
+
+	public static void printFibonacciSequence2(int number) {
+		for (int i = 0; i <= number; i++) {
+			System.out.print(fibonacciIterative1(i) + " ");
+		}
+		System.out.println(" Fibonacci numbers fibonacciIterative1");
+	}
+
+	public static void printFibonacciSequence3(int number) {
+		for (int i = 0; i <= number; i++) {
+			System.out.print(fibonacciRecursive(i) + " ");
+		}
+		System.out.println(" Fibonacci numbers fibonacciRecursive");
+	}
+
+	public static void printFibonacciSequence4(int number) {
+		for (int i = 0; i <= number; i++) {
+			System.out.print(fibonacciRecursive1(i) + " ");
+		}
+		System.out.println(" Fibonacci numbers fibonacciRecursive1");
 	}
 
 }
