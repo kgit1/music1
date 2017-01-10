@@ -1,4 +1,4 @@
-package writeReadSerialization;
+package aWriteReadSerialization;
 
 import java.beans.Transient;
 import java.io.Serializable;

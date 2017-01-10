@@ -1,4 +1,4 @@
-package writeReadFile;
+package aWriteReadFile;
 
 import java.io.File;
 
