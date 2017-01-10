@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
-import aFib.Generator;
+import aPattern.Strategy.Generator;
 
 //demonstrates two classes haven't implementation of one interface, 
 //but still working together and using one interface with help of inside anonymous classes of one interface

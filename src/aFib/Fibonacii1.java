@@ -2,6 +2,8 @@ package aFib;
 
 import java.util.Iterator;
 
+import aPattern.Strategy.Generator;
+
 public class Fibonacii1 implements Generator<Integer> {
 
 	private int count = 0;

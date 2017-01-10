@@ -3,7 +3,7 @@ package aStore;
 import java.util.ArrayList;
 import java.util.Random;
 
-import aFib.Generator;
+import aPattern.Strategy.Generator;
 
 public class Store extends ArrayList<Aisle> {
 
