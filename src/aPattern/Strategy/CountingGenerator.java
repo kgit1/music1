@@ -1,5 +1,6 @@
 package aPattern.Strategy;
 
+//pattern Strategy encapsulates variable part of code in separated inner classes
 public class CountingGenerator {
 
 	public static class Boolean implements Generator<java.lang.Boolean> {

@@ -1,5 +1,10 @@
 package aPattern.Factory3;
 
+//pattern Factory - creational pattern that uses factory methods to deal
+//with problem of creating objects without having to specify exact class
+//of the object that will be created
+//we give some object as argument and method knows on his own what to 
+//do when get object of that class
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +57,8 @@ class Filter extends Part {
 }
 
 class FuelFilter extends Filter {
-	public static class Factory implements aPattern.Factory3.Factory<FuelFilter> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<FuelFilter> {
 		public FuelFilter create() {
 			return new FuelFilter();
 		}
@@ -60,7 +66,8 @@ class FuelFilter extends Filter {
 }
 
 class AirFilter extends Filter {
-	public static class Factory implements aPattern.Factory3.Factory<AirFilter> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<AirFilter> {
 		public AirFilter create() {
 			return new AirFilter();
 		}
@@ -68,7 +75,8 @@ class AirFilter extends Filter {
 }
 
 class CabinFilter extends Filter {
-	public static class Factory implements aPattern.Factory3.Factory<CabinFilter> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<CabinFilter> {
 		public CabinFilter create() {
 			return new CabinFilter();
 		}
@@ -76,7 +84,8 @@ class CabinFilter extends Filter {
 }
 
 class OilFilter extends Filter {
-	public static class Factory implements aPattern.Factory3.Factory<OilFilter> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<OilFilter> {
 		public OilFilter create() {
 			return new OilFilter();
 		}
@@ -95,7 +104,8 @@ class FanBelt extends Belt {
 }
 
 class GeneratorBelt extends Belt {
-	public static class Factory implements aPattern.Factory3.Factory<GeneratorBelt> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<GeneratorBelt> {
 		public GeneratorBelt create() {
 			return new GeneratorBelt();
 		}
@@ -103,7 +113,8 @@ class GeneratorBelt extends Belt {
 }
 
 class PowerSteeringBelt extends Belt {
-	public static class Factory implements aPattern.Factory3.Factory<PowerSteeringBelt> {
+	public static class Factory
+			implements aPattern.Factory3.Factory<PowerSteeringBelt> {
 		public PowerSteeringBelt create() {
 			return new PowerSteeringBelt();
 		}
@@ -114,29 +125,27 @@ public class RegisteredFactory {
 	HashMap<String, Integer> listOfParts = new HashMap<>();
 	HashMap<Class<?>, Integer> parts = new HashMap<>();
 	List<Part> list = new ArrayList<>();
-	
-	public void CounterItemsPutToMap(String obj){
+
+	public void CounterItemsPutToMap(String obj) {
 		Integer quantity = listOfParts.get(obj);
-//		System.out.println(obj);
-		if(quantity == null){
+		// System.out.println(obj);
+		if (quantity == null) {
 			listOfParts.put(obj, 1);
-		}else{
-			listOfParts.put(obj, quantity+1);
-		}
-	}
-	
-	public void CounterItemsPutToMap1(Object obj){
-		Class <?> type = obj.getClass();
-		
-		
-//		System.out.println(type);
-		if(parts.get(type)==null){
-			parts.put(type, 1);
-		}else{
-			parts.put(type, parts.get(type)+1);
+		} else {
+			listOfParts.put(obj, quantity + 1);
 		}
 	}
 
+	public void CounterItemsPutToMap1(Object obj) {
+		Class<?> type = obj.getClass();
+
+		// System.out.println(type);
+		if (parts.get(type) == null) {
+			parts.put(type, 1);
+		} else {
+			parts.put(type, parts.get(type) + 1);
+		}
+	}
 
 	public static void main(String[] args) {
 		RegisteredFactory rf = new RegisteredFactory();
@@ -148,7 +157,7 @@ public class RegisteredFactory {
 		}
 		System.out.println(rf.list);
 		System.out.println(rf.listOfParts);
-		System.out.println("MAp");
+		System.out.println("Map");
 		System.out.println(rf.parts);
 
 	}
