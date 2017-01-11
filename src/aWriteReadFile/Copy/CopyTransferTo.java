@@ -24,7 +24,7 @@ public class CopyTransferTo {
 		long start = System.nanoTime();
 		in.transferTo(0, in.size(), out);
 		double duration = System.nanoTime() - start;
-		System.out.format("%,2f\n", duration / 1.0e9);
+		System.out.format("%.4f\n", duration / 1.0e9);
 		// or
 		// out.transferFrom(in, 0, in.size());
 	}
