@@ -20,7 +20,11 @@ public class CopyTransferTo {
 		}
 		FileChannel in = new FileInputStream(args[0]).getChannel(),
 				out = new FileOutputStream(args[1]).getChannel();
+		
+		long start = System.nanoTime();
 		in.transferTo(0, in.size(), out);
+		double duration = System.nanoTime() - start;
+		System.out.format("%,2f\n", duration / 1.0e9);
 		// or
 		// out.transferFrom(in, 0, in.size());
 	}
