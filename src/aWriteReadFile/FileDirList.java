@@ -9,18 +9,27 @@ import java.util.regex.Pattern;
 public class FileDirList {
 
 	public static void main(String[] args) {
-		// fake command line argument
-		// args = new String[1];
-		// args[0] = ".java";
+//		 fake command line argument
+		 args = new String[1];
+		 args[0] = ".jpeg";
 		// File - presents file, or group of files if points on directory and in
 		// that case array of files can be returned with help of method list()
-		File path = new File("bin");
+
+		printDir(new File("."), args);
+
+	}
+
+	public static void printDir(File path, String[] args) {
+		// File path = new File("bin");
 		String[] list;
+
+		// print all directories and files from selected directory
 		if (args.length == 0) {
-			// method list executed to file - returns arrey of file names if
+			// method list executed to file - returns array of file names if
 			// File object is directory
 			list = path.list();
 		} else {
+			// print directories and files by mask
 			list = path.list(new DirFilter(args[0]));
 			Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
 		}
@@ -50,4 +59,5 @@ class DirFilter implements FilenameFilter {
 	public boolean accept(File dir, String name) {
 		return pattern.matcher(name).matches();
 	}
+
 }
