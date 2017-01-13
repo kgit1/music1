@@ -3,15 +3,24 @@ package aThreads1;
 public class LiftOff {
 
 	public static void main(String[] args) {
+		// we can create object and invoke run
 		LiftOff1 launch = new LiftOff1();
 		launch.run();
+		// or create thread and give runnable object to it - he will run run()
+		// methid by himself
+		Thread t = new Thread(new LiftOff1());
+		t.start();
+		System.out.println("Waiting for liftOff");
 	}
 }
 
+// simple countdown
 class LiftOff1 implements Runnable {
 
 	protected int countDown = 10;
+	// object counter
 	private static int taskCount = 0;
+	// increments every object created
 	private final int id = taskCount++;
 
 	public LiftOff1() {
