@@ -4,10 +4,14 @@ public class LiftOff {
 
 	public static void main(String[] args) {
 		// we can create object and invoke run
+		// but it will be in the same Thrad where invoked - in the Thread of
+		// main method
 		LiftOff1 launch = new LiftOff1();
 		launch.run();
 		// or create thread and give runnable object to it - he will run run()
-		// methid by himself
+		// method by himself
+		// this time new Thread created and start working on start()
+		// invoke
 		Thread t = new Thread(new LiftOff1());
 		t.start();
 		System.out.println("Waiting for liftOff");
