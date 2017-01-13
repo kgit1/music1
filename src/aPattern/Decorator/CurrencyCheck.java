@@ -1,24 +1,25 @@
 package aPattern.Decorator;
 
 //Component on Decorator design pattern
-// Now its time to check currency.
+//We have some objects and need to change behavior of one of them
+//So we use decorator on it
+//Now its time to check currency.
 public class CurrencyCheck {
 
 	public static void main(String[] args) {
 
 		// without adding decorators
-		Currency curr = new Dollar();
-		System.out
-				.println(curr.getDescription() + " dollar. " + curr.cost(2.0));
+		Currency curr = new Rupee();
+		System.out.println(curr.getDescription() + ", " + curr.cost(1.1));
+		Currency curr1 = new Dollar();
+		System.out.println(curr1.getDescription() + ", " + curr1.cost(2.0));
 
 		// adding decorators
-		Currency curr2 = new USDDecorator(new Dollar());
-		System.out.println(
-				curr2.getDescription() + " dollar. " + curr2.cost(3.0));
+		Currency curr2 = new AUDDecorator(new Dollar());
+		System.out.println(curr2.getDescription() + ", " + curr2.cost(3.0));
 
 		Currency curr3 = new SGDDecorator(new Dollar());
-		System.out.println(
-				curr3.getDescription() + " dollar. " + curr3.cost(4.0));
+		System.out.println(curr3.getDescription() + ", " + curr3.cost(4.0));
 	}
 }
 
@@ -33,6 +34,7 @@ abstract class Currency {
 }
 
 // Concrete Component
+// First example class
 class Rupee extends Currency {
 	double value;
 
@@ -47,6 +49,7 @@ class Rupee extends Currency {
 }
 
 // Another Concrete Component
+// Second example class which we want to change with come decore
 class Dollar extends Currency {
 	double value;
 
@@ -66,38 +69,44 @@ abstract class Decorator extends Currency {
 }
 
 // Concrete Decorator
-class USDDecorator extends Decorator {
-	Currency currency;
 
-	public USDDecorator(Currency currency) {
+// we use composition
+// create instance of some dollar
+// and change it name and value to our new currency australian dollar
+class AUDDecorator extends Decorator {
+	Dollar currency;
+
+	public AUDDecorator(Dollar currency) {
 		this.currency = currency;
 	}
 
 	public String getDescription() {
-		return currency.getDescription() + ", it's US Dollar";
+		return currency.getDescription() + ", it's Australian Dollar";
 	}
 
 	@Override
 	public double cost(double value) {
-		return currency.cost(value);
+		return currency.cost(value) * 1.332;
 	}
 }
 
 // Another Concrete Decorator
+// create instance of some dollar
+// and change it name and value to our new currency singapore dollar
 class SGDDecorator extends Decorator {
-	Currency currency;
+	Dollar currency;
 
-	public SGDDecorator(Currency currency) {
+	public SGDDecorator(Dollar currency) {
 		this.currency = currency;
 	}
 
 	public String getDescription() {
-		return currency.getDescription() + ", it's singapore Dollar";
+		return currency.getDescription() + ", it's Singapore Dollar";
 	}
 
 	@Override
 	public double cost(double value) {
-		return currency.cost(value);
+		return currency.cost(value) * 1.42;
 	}
 }
 // Explanation of the code:
