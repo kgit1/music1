@@ -1,7 +1,7 @@
 package aThreads1;
 
-public class ThreadOne implements Runnable {
-	Accum a = Accum.getAccum();
+public class AThreadOne implements Runnable {
+	AAccum a = AAccum.getAccum();
 
 	@Override
 	public void run() {

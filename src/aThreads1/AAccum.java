@@ -1,16 +1,16 @@
 package aThreads1;
 
-public class Accum {
+public class AAccum {
 	// static instance of class, and with private constructor will make this
 	// class - singleton
-	private static Accum a = new Accum();
+	private static AAccum a = new AAccum();
 	private int counter;
 
 	// private constructor
-	private Accum() {
+	private AAccum() {
 	}
 
-	public static Accum getAccum() {
+	public static AAccum getAccum() {
 		return a;
 	}
 
