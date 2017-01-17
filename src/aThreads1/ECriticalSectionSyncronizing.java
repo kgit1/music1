@@ -14,14 +14,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 //2 - use critical section synchronization, when not whole method but 
 //only critical part inside of it synchronized
 public class ECriticalSectionSyncronizing {
-	
+
 	public static void main(String[] args) {
 		PairManager pman1 = new PairManager1();
 		PairManager pman2 = new PairManager2();
 		testApproaches(pman1, pman2);
 	}
-	
-	
+
 	static void testApproaches(PairManager pman1, PairManager pman2) {
 		ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -40,7 +39,7 @@ public class ECriticalSectionSyncronizing {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("pm1: "+pm1+"\npm2: "+pm2);
+		System.out.println("pm1: " + pm1 + "\npm2: " + pm2);
 		System.exit(0);
 	}
 }
@@ -105,8 +104,10 @@ abstract class PairManager {
 		return new Pair(p.getX(), p.getY());
 	}
 
+	// store over object
 	protected void store(Pair p) {
 		storage.add(p);
+		// emulate some delay
 		try {
 			TimeUnit.MILLISECONDS.sleep(50);
 		} catch (InterruptedException e) {
@@ -138,6 +139,8 @@ class PairManager2 extends PairManager {
 			p.incrementY();
 			temp = getPair();
 		}
+		// store adds object to list and is a thread safe so can be not
+		// synchronized
 		store(temp);
 	}
 }
@@ -176,6 +179,5 @@ class PairChecker implements Runnable {
 			pm.checkCounter.incrementAndGet();
 			pm.getPair().checkState();
 		}
-
 	}
 }
