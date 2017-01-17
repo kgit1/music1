@@ -43,7 +43,7 @@ public class SortProjectBucketSort {
     final int[] code = hash(input);
     
     // create and initialize buckets to ArrayList: O(n)
-    List[] buckets = new List[code[1]];
+    List<Integer>[] buckets = new List[code[1]];
     for (int i = 0; i < code[1]; i++) {
       buckets[i] = new ArrayList();
     }
@@ -60,11 +60,11 @@ public class SortProjectBucketSort {
     
     int ndx = 0;
     // merge the buckets: O(n)
-//    for (int b = 0; b < buckets.length; b++) {
-//			for (int v : buckets[b]) {
-//        input[ndx++] = v;
-//      }
-//    }
+		for (int b = 0; b < buckets.length; b++) {
+			for (int v : buckets[b]) {
+				input[ndx++] = v;
+			}
+		}
   }
 
   /**
