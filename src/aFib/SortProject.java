@@ -10,10 +10,10 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Sort {
+public class SortProject {
 
 	public static void main(String[] args) {
-		Sort s = new Sort();
+		SortProject s = new SortProject();
 		s.writeArray(s.arrayGenerator(50, 50));
 		int[] arr = s.readArray();
 		int[] arr1 = new int[50];
@@ -232,7 +232,7 @@ public class Sort {
 		return array;
 	}
 
-	//////// CHECK
+	//////// CHECK ==========================================================
 	private static void shakeSort(int[] v) {
 		boolean end = false;
 		while (!end) {
