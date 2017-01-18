@@ -9,6 +9,10 @@ package aPattern.Singleton;
 //often (i.e. once).
 
 public class DoubleCheckedLockingSingleton {
+	// We are only creating instance one time
+	// We are creating instance lazily at the time of the first request comes.
+	// A write to a volatile field happens-before every subsequent read of that
+	// same field, known as Volatile variable rule.
 	private volatile DoubleCheckedLockingSingleton INSTANCE;
 
 	private DoubleCheckedLockingSingleton() {
