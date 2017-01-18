@@ -2,7 +2,17 @@ package aPattern.Producer;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+//Producer consumer pattern is every where in real life and depict coordination 
+//and collaboration. Like one person is preparing food (Producer) while other 
+//one is serving food (Consumer), both will use shared table for putting food 
+//plates and taking food plates. Producer which is the person preparing food 
+//will wait if table is full and Consumer (Person who is serving food) will 
+//wait if table is empty. table is a shared object here. On Java library 
+//Executor framework itself implement Producer Consumer design pattern be 
+//separating responsibility of addition and execution of task.
 
 //Benefit of Producer Consumer Pattern
 //Its indeed a useful design pattern and used most commonly while writing 
