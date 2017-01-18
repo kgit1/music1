@@ -1,17 +1,69 @@
-package aPattern.Factory3;
+package aPattern.Factory;
 
 //pattern Factory - creational pattern that uses factory methods to deal
 //with problem of creating objects without having to specify exact class
 //of the object that will be created
 //we give some object as argument and method knows on his own what to 
 //do when get object of that class
+
+//When to use Factory design pattern in Java
+//Static Factory methods are common in frameworks where library code needs 
+//to create objects of types which may be sub classed by applications using 
+//the framework.Some or all concrete products can be created in multiple ways,
+//or we want to leave open the option that in the future there may be new ways 
+//to create the concrete product.Factory method is used when Products don't need 
+//to know how they are created.We can use factory pattern where we have to 
+//create an object of any one of sub-classes depending on the data provided
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-//create interface Factory with generic T - means T equals any type we give 
-//to method
+public class RegisteredFactory {
+	HashMap<String, Integer> listOfParts = new HashMap<>();
+	HashMap<Class<?>, Integer> parts = new HashMap<>();
+	List<Part> list = new ArrayList<>();
+
+	public static void main(String[] args) {
+		RegisteredFactory rf = new RegisteredFactory();
+		for (int i = 0; i < 20; i++) {
+			Part part = Part.createRandom();
+			rf.CounterItemsPutToMap1(part);
+			rf.CounterItemsPutToMap(part.getClass().getSimpleName());
+			rf.list.add(part);
+		}
+		System.out.println(rf.list);
+		System.out.println(rf.listOfParts);
+		System.out.println("Map");
+		System.out.println(rf.parts);
+	}
+
+	public void CounterItemsPutToMap(String obj) {
+		Integer quantity = listOfParts.get(obj);
+		// System.out.println(obj);
+		if (quantity == null) {
+			listOfParts.put(obj, 1);
+		} else {
+			listOfParts.put(obj, quantity + 1);
+		}
+	}
+
+	public void CounterItemsPutToMap1(Object obj) {
+		Class<?> type = obj.getClass();
+
+		// System.out.println(type);
+		if (parts.get(type) == null) {
+			parts.put(type, 1);
+		} else {
+			parts.put(type, parts.get(type) + 1);
+		}
+	}
+
+}
+
+// create interface Factory with generic T - means T equals any type we give
+// to method
 interface Factory<T> {
 	// same T for method return type, T - means any glass we giving
 	T create();
@@ -58,7 +110,7 @@ class Filter extends Part {
 
 class FuelFilter extends Filter {
 	public static class Factory
-			implements aPattern.Factory3.Factory<FuelFilter> {
+			implements aPattern.Factory.Factory<FuelFilter> {
 		public FuelFilter create() {
 			return new FuelFilter();
 		}
@@ -66,8 +118,7 @@ class FuelFilter extends Filter {
 }
 
 class AirFilter extends Filter {
-	public static class Factory
-			implements aPattern.Factory3.Factory<AirFilter> {
+	public static class Factory implements aPattern.Factory.Factory<AirFilter> {
 		public AirFilter create() {
 			return new AirFilter();
 		}
@@ -76,7 +127,7 @@ class AirFilter extends Filter {
 
 class CabinFilter extends Filter {
 	public static class Factory
-			implements aPattern.Factory3.Factory<CabinFilter> {
+			implements aPattern.Factory.Factory<CabinFilter> {
 		public CabinFilter create() {
 			return new CabinFilter();
 		}
@@ -84,8 +135,7 @@ class CabinFilter extends Filter {
 }
 
 class OilFilter extends Filter {
-	public static class Factory
-			implements aPattern.Factory3.Factory<OilFilter> {
+	public static class Factory implements aPattern.Factory.Factory<OilFilter> {
 		public OilFilter create() {
 			return new OilFilter();
 		}
@@ -96,7 +146,7 @@ class Belt extends Part {
 }
 
 class FanBelt extends Belt {
-	public static class Factory implements aPattern.Factory3.Factory<FanBelt> {
+	public static class Factory implements aPattern.Factory.Factory<FanBelt> {
 		public FanBelt create() {
 			return new FanBelt();
 		}
@@ -105,7 +155,7 @@ class FanBelt extends Belt {
 
 class GeneratorBelt extends Belt {
 	public static class Factory
-			implements aPattern.Factory3.Factory<GeneratorBelt> {
+			implements aPattern.Factory.Factory<GeneratorBelt> {
 		public GeneratorBelt create() {
 			return new GeneratorBelt();
 		}
@@ -114,52 +164,9 @@ class GeneratorBelt extends Belt {
 
 class PowerSteeringBelt extends Belt {
 	public static class Factory
-			implements aPattern.Factory3.Factory<PowerSteeringBelt> {
+			implements aPattern.Factory.Factory<PowerSteeringBelt> {
 		public PowerSteeringBelt create() {
 			return new PowerSteeringBelt();
 		}
 	}
-}
-
-public class RegisteredFactory {
-	HashMap<String, Integer> listOfParts = new HashMap<>();
-	HashMap<Class<?>, Integer> parts = new HashMap<>();
-	List<Part> list = new ArrayList<>();
-
-	public void CounterItemsPutToMap(String obj) {
-		Integer quantity = listOfParts.get(obj);
-		// System.out.println(obj);
-		if (quantity == null) {
-			listOfParts.put(obj, 1);
-		} else {
-			listOfParts.put(obj, quantity + 1);
-		}
-	}
-
-	public void CounterItemsPutToMap1(Object obj) {
-		Class<?> type = obj.getClass();
-
-		// System.out.println(type);
-		if (parts.get(type) == null) {
-			parts.put(type, 1);
-		} else {
-			parts.put(type, parts.get(type) + 1);
-		}
-	}
-
-	public static void main(String[] args) {
-		RegisteredFactory rf = new RegisteredFactory();
-		for (int i = 0; i < 20; i++) {
-			Part part = Part.createRandom();
-			rf.CounterItemsPutToMap1(part);
-			rf.CounterItemsPutToMap(part.getClass().getSimpleName());
-			rf.list.add(part);
-		}
-		System.out.println(rf.list);
-		System.out.println(rf.listOfParts);
-		System.out.println("Map");
-		System.out.println(rf.parts);
-
-	}
-
 }
