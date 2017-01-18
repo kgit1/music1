@@ -26,7 +26,6 @@ public class ObserverTest {
 		personalLoan.registerObserver(printMedia);
 		personalLoan.registerObserver(onlineMedia);
 		personalLoan.setInterest(3.5f);
-
 	}
 }
 
