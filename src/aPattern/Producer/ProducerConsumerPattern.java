@@ -2,8 +2,36 @@ package aPattern.Producer;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.Level;import java.util.logging.Logger;
+
+//Benefit of Producer Consumer Pattern
+//Its indeed a useful design pattern and used most commonly while writing 
+//multi-threaded or concurrent code.here is few of its benefit:
+//1)Producer Consumer Pattern simple development.you can Code Producer 
+//and Consumer independently and Concurrently,they just need to know 
+//shared object.
+//2)Producer doesn'tneed to know about who is consumer or how many consumers 
+//are there.Same is true with Consumer.
+//3)Producer and Consumer can work with different speed.There is no risk of 
+//Consumer consuming half-baked item.In fact by monitoring consumer speed one 
+//can introduce more consumer for better utilization.
+//4)Separating producer and Consumer functionality result in more clean,
+//readable and manageable code.
+//Producer Consumer Problem in Multi-threading
+//Producer-Consumer Problem is also a popular java interview question where 
+//interviewer ask to implement producer consumer design pattern so that 
+//Producer should wait if Queue or bucket is full and Consumer should wait 
+//if queue or bucket is empty.This problem can be implemented or solved by 
+//different ways in Java,classical way is using wait and notify method to 
+//communicate between Producer and Consumer thread and blocking each of them on 
+//individual condition like full queue and empty queue.With introduction of 
+//BlockingQueue Data Structure in Java 5 Its now much simpler because 
+//BlockingQueue provides this control implicitly by introducing blocking 
+//methods put()and take().Now you don'trequire to use wait and notify to 
+//communicate between Producer and Consumer.BlockingQueue put()method will 
+//block if Queue is full in case of Bounded Queue and take()will block if 
+//Queue is empty.In next section we will see a code example of Producer 
+//Consumer design pattern.
 
 public class ProducerConsumerPattern {
 
