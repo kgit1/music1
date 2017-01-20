@@ -75,167 +75,54 @@ public class MontyHollProblem {
 
 	public static void problem2(boolean[][] array, int[] arrayR) {
 		int winCounter = 0;
+		int winChangedCounter = 0;
 		for (int i = 0; i < array.length; i++) {
-			int[] temp = new int[2];
+			int[] afterOneOutHolder = new int[2];
 			int counter = 0;
 			int checker = (int) (Math.random() * 2);
 			boolean checkerB = false;
 			for (int j = 0; j < array[i].length; j++) {
 				if (array[i][j]) {
-					temp[0] = j;
+					afterOneOutHolder[0] = j;
 					counter++;
 				} else if (j == arrayR[i]) {
-					temp[1] = j;
+					afterOneOutHolder[1] = j;
 					counter++;
 				}
 			}
 			if (counter < 2) {
 				for (int j = 0; j < array[i].length; j++) {
 					if (!array[i][j] && checker > 0 && !checkerB) {
-						temp[1] = j;
+						afterOneOutHolder[1] = j;
 					} else if (!array[i][j] && checkerB) {
-						temp[1] = j;
+						afterOneOutHolder[1] = j;
 					} else if (!array[i][j]) {
 						checkerB = true;
 					}
 				}
 			}
-			System.out.println(Arrays.toString(temp));
+			// System.out.println(Arrays.toString(temp));
+			int chancgedChoice = 0;
+			if (afterOneOutHolder[0] == arrayR[i]) {
+				chancgedChoice = afterOneOutHolder[1];
+			} else {
+				chancgedChoice = afterOneOutHolder[0];
+			}
+			if (afterOneOutHolder[0] == chancgedChoice) {
+				winChangedCounter++;
+			}
+
+			if (afterOneOutHolder[0] == arrayR[i]) {
+				winCounter++;
+			}
 		}
 		System.out.println(winCounter + " - WINS");
+		System.out.println(winChangedCounter + " - WINS!!!!!!");
 	}
-
-	// public static void initWithOne(int[][] array) {
-	// for (int i = 0; i < array.length; i++) {
-	// int j = (int) (Math.random() * 3);
-	// array[i][j] = 1;
-	// }
-	// }
-
-	// public static void initWithTwoThree(int[][] array) {
-	// for (int i = 0; i < array.length; i++) {
-	// boolean check = false;
-	// int a = randTwoThree();
-	// int b = 3;
-	// if (a == 3) {
-	// b = 2;
-	// }
-	// for (int j = 0; j < array[i].length; j++) {
-	// if (array[i][j] != 1 && !check) {
-	// array[i][j] = a;
-	// check = true;
-	// }
-	// if (array[i][j] != 1 && array[i][j] != a && check) {
-	// array[i][j] = b;
-	// check = false;
-	// }
-	// }
-	// }
-	// }
-
-	// public static void initCounter(int[][] array) {
-	// int a = 0, b = 0, c = 0;
-	// for (int i = 0; i < array.length; i++) {
-	// for (int j = 0; j < array[i].length; j++) {
-	// if (array[i][j] == 1) {
-	// a++;
-	// } else if (array[i][j] == 2) {
-	// b++;
-	// } else {
-	// c++;
-	// }
-	// }
-	// }
-	// System.out.println("1 - " + a);
-	// System.out.println("2 - " + b);
-	// System.out.println("3 - " + c);
-	// }
-
-	// public static void initCounterDeep(int[][] array) {
-	// int a1 = 0, a2 = 0, a3 = 0, b1 = 0, b2 = 0, b3 = 0, c1 = 0, c2 = 0,
-	// c3 = 0;
-	// for (int i = 0; i < array.length; i++) {
-	// for (int j = 0; j < array[i].length; j++) {
-	// if (j == 0) {
-	// if (array[i][j] == 1) {
-	// a1++;
-	// } else if (array[i][j] == 2) {
-	// b1++;
-	// } else {
-	// c1++;
-	// }
-	// }
-	// if (j == 1) {
-	// if (array[i][j] == 1) {
-	// a2++;
-	// } else if (array[i][j] == 2) {
-	// b2++;
-	// } else {
-	// c2++;
-	// }
-	// }
-	// if (j == 2) {
-	// if (array[i][j] == 1) {
-	// a3++;
-	// } else if (array[i][j] == 2) {
-	// b3++;
-	// } else {
-	// c3++;
-	// }
-	// }
-	// }
-	// }
-	// System.out.println("First position");
-	// System.out.println("1 = " + a1 + " 2 = " + b1 + " 3 = " + c1);
-	// System.out.println("Second position");
-	// System.out.println("1 = " + a2 + " 2 = " + b2 + " 3 = " + c2);
-	// System.out.println("Third position");
-	// System.out.println("1 = " + a3 + " 2 = " + b3 + " 3 = " + c3);
-	// }
 
 	public static void initArrayOfRandoms(int[] arrayR) {
 		for (int i = 0; i < arrayR.length; i++) {
 			arrayR[i] = (int) (Math.random() * 3);
 		}
 	}
-
-	// public static void problem1(int[][] array, int[] arrayR) {
-	// int winCounter = 0;
-	// for (int i = 0; i < array.length; i++) {
-	// for (int j = 0; j < array[i].length; j++) {
-	// if (array[i][j] == 1) {
-	// if (arrayR[i] == j) {
-	// winCounter++;
-	// System.out.println("Tray " + i + " WIN!!!");
-	// System.out.println(Arrays.toString(array[i]));
-	// System.out.println("My number = " + (arrayR[i] + 1));
-	// }
-	// }
-	// }
-	// }
-	// System.out.println(winCounter + " - WINS");
-	// }
-
-	// public static void problem2(int[][] array, int[] arrayR) {
-	// int winCounter = 0;
-	// int[] temp = new int[2];
-	// for (int i = 0; i < array.length; i++) {
-	// for (int j = 0; j < array[i].length; j++) {
-	// if (j != temp[i] && array[i][j] != 1) {
-	//
-	// }
-	//
-	// // if (array[i][j] == 1) {
-	// // if (arrayR[i] == j) {
-	// // winCounter++;
-	// // System.out.println("Tray " + i + " WIN!!!");
-	// // System.out.println(Arrays.toString(array[i]));
-	// // System.out.println("My number = " + (arrayR[i] + 1));
-	// // }
-	// // }
-	// }
-	// }
-	// System.out.println(winCounter + " - WINS");
-	// }
-
 }
