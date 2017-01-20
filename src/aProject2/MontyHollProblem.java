@@ -77,45 +77,26 @@ public class MontyHollProblem {
 		int winCounter = 0;
 		for (int i = 0; i < array.length; i++) {
 			int[] temp = new int[2];
-			boolean addCounter = false;
-			boolean addSecond = false;
+			int counter = 0;
 			int checker = (int) (Math.random() * 2);
+			boolean checkerB = false;
 			for (int j = 0; j < array[i].length; j++) {
-				if (array[i][j] && j != arrayR[i]) {
-					if (array[i][j]) {
-						if (addCounter) {
-							temp[0] = j;
-							addCounter = true;
-						} else {
-							temp[1] = j;
-						}
-					} else if (j == arrayR[i]) {
-						if (addCounter) {
-							temp[0] = j;
-							addCounter = true;
-						} else {
-							temp[1] = j;
-						}
-					}
-				} else {
-					if (array[i][j]) {
-						if (addCounter) {
-							temp[0] = j;
-							addCounter = true;
-						} else {
-							temp[1] = j;
-						}
-					} else {
-						if (checker > 0 && !addSecond) {
-							if (addCounter) {
-								temp[0] = j;
-								addCounter = true;
-								addSecond = true;
-							} else {
-								temp[1] = j;
-							}
-						} else if (checker < 0 && !addSecond) {
-						}
+				if (array[i][j]) {
+					temp[0] = j;
+					counter++;
+				} else if (j == arrayR[i]) {
+					temp[1] = j;
+					counter++;
+				}
+			}
+			if (counter < 2) {
+				for (int j = 0; j < array[i].length; j++) {
+					if (!array[i][j] && checker > 0 && !checkerB) {
+						temp[1] = j;
+					} else if (!array[i][j] && checkerB) {
+						temp[1] = j;
+					} else if (!array[i][j]) {
+						checkerB = true;
 					}
 				}
 			}
