@@ -11,21 +11,9 @@ public class MontyHollProblem {
 
 		initArray(array);
 		printArray(array);
-
-		// // printArray(array);
-		// initWithOne(array);
-		// // printArray(array);
-		// initWithTwoThree(array);
-		// // printArray(array);
-		// // initCounter(array);
-		// // initCounterDeep(array);
 		initArrayOfRandoms(arrayR);
-		//
-		problem1(array, arrayR);
+//		problem1(array, arrayR);
 		problem2(array, arrayR);
-		// for (int i = 0; i < arrayR.length; i++) {
-		// System.out.print(arrayR[i] + " ");
-		// }
 	}
 
 	public static void printArray(boolean[][] array) {
