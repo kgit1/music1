@@ -1,10 +1,6 @@
-/aChat/
-/aChat1/
-/aCollections/
-/aFib/
-/aLoggingException/
 /aPattern/
 /aProject/
+/aProject2/
 /aQuizCard/
 /aReflection/
 /aRemoteServerClient/
@@ -13,6 +9,8 @@
 /aThreads/
 /aThreads1/
 /aTupleGeneric/
+/aWriteReadFile/
+/aWriteReadSerialization/
 /animal/
 /cLiner/
 /music1/
@@ -20,8 +18,3 @@
 /nullRobot/
 /projectSample/
 /quizes/
-/writeReadFile/
-/writeReadSerialization/
-/aWriteReadFile/
-/aWriteReadSerialization/
-/aProject2/
