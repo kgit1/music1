@@ -3,8 +3,6 @@ package aStore;
 import java.util.ArrayList;
 import java.util.Random;
 
-import aPattern.Strategy.Generator;
-
 public class Store extends ArrayList<Aisle> {
 
 	private ArrayList<CheckoutStand> checkouts = new ArrayList<>();

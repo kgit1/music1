@@ -1,4 +1,4 @@
-package aPattern.Strategy;
+package aStore;
 
 public interface Generator<T> {
 	T next();

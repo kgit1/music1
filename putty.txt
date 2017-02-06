@@ -2,21 +2,26 @@ download putty
 http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 use Puttygen
-
 generate new private key and save it
-
 add new ppk key on openshift settings page
 
 clone with TortoiseGit app from openshift
-
 put new war file in webapps folder
-
 remove old war with TortoiseGit
 add new war with TortoiseGit
 
-commit to master with TortoiseGit using ppk key
+commit to master 
+commit and push
 
+access appSite - folderName-
 
 kgit1
-
 kgit1@rambler.ru
+
+jdbc.driverClassName = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://127.13.10.2:3306/appName?useSSL=false
+jdbc.username = admin7YUawMz
+jdbc.password = sCAJ4n_Rug9i
+hibernate.dialect = org.hibernate.dialect.MySQLDialect
+hibernate.show_sql = true
+hibernate.format_sql = true

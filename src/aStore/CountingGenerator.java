@@ -1,4 +1,4 @@
-package aPattern.Strategy;
+package aStore;
 
 //pattern Strategy encapsulates variable part of code in separated inner classes
 public class CountingGenerator {

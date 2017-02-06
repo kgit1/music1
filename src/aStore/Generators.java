@@ -2,8 +2,6 @@ package aStore;
 
 import java.util.Collection;
 
-import aPattern.Strategy.Generator;
-
 public class Generators {
 	public static <T> Collection<T> fill(Collection<T> coll, Generator<T> gen,
 			int n) {

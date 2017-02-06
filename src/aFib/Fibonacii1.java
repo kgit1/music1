@@ -2,7 +2,7 @@ package aFib;
 
 import java.util.Iterator;
 
-import aPattern.Strategy.Generator;
+import aStore.Generator;
 
 public class Fibonacii1 implements Generator<Integer> {
 
